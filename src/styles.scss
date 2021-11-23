@@ -1,0 +1,51 @@
+$font-stack: Lato, sans-serif;
+$primary-color:#2B3C4E;
+
+body {
+    font: 100% $font-stack;
+    color: $primary-color;
+    background:  #E5E5E5;
+}
+
+.enyata-logo {
+    margin-top: 8vh;
+}
+
+.upload-btn {
+    border: 1.5px solid #2B3C4E;
+    border-style: dashed;
+    padding: 6px 20px 6px 20px;
+    background: none;
+    font-size: 12px;
+    margin-top: 6vh;
+}
+
+.upload-file {
+    visibility: hidden;
+}
+
+.application-form-details {
+    padding-top: 5vh;
+}
+
+.application-form {
+    padding-top: 4vh;
+}
+
+.form-control {
+    width: 90% !important;
+}
+
+#my-form {
+    margin-left: 80px;
+}
+
+#submit-btn {
+    background: #7557D3;
+    color: #fff;
+    margin-top: 7vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-bottom: 30px;
+}
