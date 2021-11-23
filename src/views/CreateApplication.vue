@@ -2,59 +2,58 @@
     <div class="container">
         <div class="form-container-head mt-3 text-center">
             <img src="../assets/icons/enyata-logo.svg" alt="enyata-logo" class="enyata-logo" />
-            <p class="text-center fst-italic mt-4">Application Form</p>
+            <p class="text-center fst-italic mt-4 mb-4 pb-3">Application Form</p>
         </div>
 
-        <div class="container text-center">
-            <div>
-                <button class="upload-btn"> + Upload CV</button>
-                <button class="upload-btn ms-4"> + Upload Photo</button>
+
+        <form class="application-form-details">
+            <div class="text-center">
+                <button class="btn-upload"> + Upload CV</button>
+                <button class="btn-upload ms-sm-4 mt-4 mt-sm-0"> + Upload Photo</button>
             </div>
-        </div>
 
-        <form>
-            <div class="row application-form-details" id="my-form">
-                <div class="col-md-6 col-12 application-form">
-                    <label>First Name</label>
+            <div class="row" id="my-form">
+                <div class="col-md-6 col-12 pe-md-4 application-form">
+                    <label class="mb-2">First Name</label>
                     <input type="text" class="form-control" v-model="firstName" name="firstName" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>Last Name</label>
+                <div class="col-md-6 col-12 ps-md-4 application-form">
+                    <label class="mb-2">Last Name</label>
                     <input type="text" class="form-control" v-model="lastName" name="lastName" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>Email</label>
+                <div class="col-md-6 col-12 pe-md-4 application-form">
+                    <label class="mb-2">Email</label>
                     <input type="email" class="form-control" v-model="email" name="email" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>Date of Birth</label>
-                    <input type="date" class="form-control" v-model="dob" name="dob" />
+                <div class="col-md-6 col-12 ps-md-4 application-form">
+                    <label class="mb-2">Date of Birth</label>
+                    <input type="date" class="form-control input-date fst-italic" v-model="dob" name="dob" placeholder="dd/mm/yyyy" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>Address</label>
+                <div class="col-md-6 col-12 pe-md-4 application-form">
+                    <label class="mb-2">Address</label>
                     <input type="text" class="form-control" v-model="address" name="address" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>University</label>
+                <div class="col-md-6 col-12 ps-md-4 application-form">
+                    <label class="mb-2">University</label>
                     <input type="text" class="form-control" v-model="uni" name="uni" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>Course of Study</label>
+                <div class="col-md-6 col-12 pe-md-4 application-form">
+                    <label class="mb-2">Course of Study</label>
                     <input type="text" class="form-control" v-model="course" name="course" />
                 </div>
 
-                <div class="col-md-6 col-12 application-form">
-                    <label>CGPA</label>
+                <div class="col-md-6 col-12 ps-md-4 application-form">
+                    <label class="mb-2">CGPA</label>
                     <input type="text" class="form-control" v-model="cgpa" name="cgpa" />
                 </div>
 
-                <button class="btn" id="submit-btn" type="submit">Submit</button>
+                <button class="btn-submit" id="submit-btn" type="submit">Submit</button>
 
             </div>
         </form>
