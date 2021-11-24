@@ -1,13 +1,15 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "./assets/scss/base.scss";
-
 @import "./assets/scss/components/btn.scss";
 @import "./assets/scss/components/intro.scss";
 @import "./assets/scss/components/text.scss";
 @import "./assets/scss/components/footer.scss";
 @import "./assets/scss/variables.scss";
 @import "./assets/scss/pages/home.scss";
-
+@import "./assets/scss/pages/applicant.scss";
+@import "./assets/scss/pages/application.scss";
+@import "./assets/scss/pages/assessment.scss";
+@import "./assets/scss/pages/dashboard.scss";
 
 .why_us {
     margin-top: 80px;
@@ -52,11 +54,6 @@
     }
 }
 
-.application {
-    color: $primary-color;
-    background: $background;
-}
-
 .enyata-logo {
     margin-top: 8vh;
 }
@@ -65,24 +62,102 @@
     visibility: hidden;
 }
 
-.application-form-details {
-    padding-top: 5vh;
-    background: $white-color;
-    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
-    border-radius: 8px;
-    padding: 53px 71px 39px 61px;
-    @include media-breakpoint-up(lg) {
-        margin: 0 83px;
-    }
-}
-
-.application-form {
-    padding-top: 32px;
-}
-
 .form-control {
     height: 48px;
     border: 1.5px solid $primary-color;
+}
+
+.input-date {
+    color: $grey-color;
+    font-size: 10px;
+}
+
+
+// Side Bar Nav
+.hamburger {
+    display: flex;
+    width: 30px;
+    margin: 10px 0px 10px;
+    // margin-left: 240px;
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+}
+
+.side-bar {
+    background-color: $white-color;
+    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+    border-radius: 8px;
+    width: 292px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    &-top {
+        background-color: $purple-color;
+        height: 255px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    margin: 76px auto 0;
+}
+
+.logout { 
+    &-menu {
+        font-size: 16px;
+        color: $primary-color;
+        font-weight: normal;
+        cursor: pointer;
+
+        &s {
+            margin-top: 57px;
+        }
+    }
+    &-img {
+        margin-left: 39px;
+        margin-right: 21px;
+        width: 14.44px;
+        height: 12.37px;
+        cursor: pointer;
+    }
+}
+
+
+.app-date-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.pending-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.update-wrapper {
+    border: 1px solid #ECECF9;
+    border-radius: 4px;
+    height: 453px;
+    @include media-breakpoint-up(lg) {
+        width: 95%;
+    }
+}
+
+.update-lines {
+    margin-top: 30px;
+}
+
+
+
+.timer {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 300;
 }
 
 .input-date {
@@ -105,4 +180,24 @@
     position: absolute;
     right: 0;
     top: 20px;
+}
+.min, .sec {
+    font-size: 12px;
+}
+
+.take-assessment-content {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.load-icon {
+    margin-left: auto;
+    margin-right: auto;
+    width: 72px;
+}
+
+.question {
+    padding: 10px;
 }

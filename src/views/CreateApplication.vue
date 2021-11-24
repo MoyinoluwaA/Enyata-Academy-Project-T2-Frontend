@@ -12,49 +12,48 @@
                     <button class="btn-upload ms-sm-4 mt-4 mt-sm-0"> + Upload Photo</button>
                 </div>
 
-                <div class="row" id="my-form">
+                <div class="row">
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">First Name</label>
-                        <input type="text" class="form-control" v-model="firstName" name="firstName" />
+                        <input type="text" class="form-control" v-model="user.first_name" name="firstName" />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
                         <label class="mb-2">Last Name</label>
-                        <input type="text" class="form-control" v-model="lastName" name="lastName" />
+                        <input type="text" class="form-control" v-model="user.last_name" name="lastName" />
                     </div>
 
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">Email</label>
-                        <input type="email" class="form-control" v-model="email" name="email" />
+                        <input type="email" class="form-control" v-model="user.email" name="email" />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
                         <label class="mb-2">Date of Birth</label>
-                        <input type="date" class="form-control input-date fst-italic" v-model="dob" name="dob" placeholder="dd/mm/yyyy" />
+                        <input type="date" class="form-control input-date fst-italic" v-model="user.date_of_birth" name="dob" placeholder="dd/mm/yyyy" />
                     </div>
 
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">Address</label>
-                        <input type="text" class="form-control" v-model="address" name="address" />
+                        <input type="text" class="form-control" v-model="user.address" name="address" />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
                         <label class="mb-2">University</label>
-                        <input type="text" class="form-control" v-model="uni" name="uni" />
+                        <input type="text" class="form-control" v-model="user.university" name="university" />
                     </div>
 
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">Course of Study</label>
-                        <input type="text" class="form-control" v-model="course" name="course" />
+                        <input type="text" class="form-control" v-model="user.course" name="course" />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
                         <label class="mb-2">CGPA</label>
-                        <input type="text" class="form-control" v-model="cgpa" name="cgpa" />
+                        <input type="text" class="form-control" v-model="user.cgpa" name="cgpa" />
                     </div>
 
-                    <button class="btn-submit" id="submit-btn" type="submit">Submit</button>
-
+                    <Button btnText='Submit' btnStyle='btn-submit' />
                 </div>
             </form>
         </div>
@@ -62,7 +61,26 @@
 </template>
 
 <script>
-export default {
+import Button from '../components/Button.vue'
 
+export default {
+    name: 'CreateApplication',
+    components: {
+        Button
+    },
+    data() {
+        return {
+            user: {
+                first_name: '',
+                last_name: '',
+                email: '',
+                date_of_birth: '',
+                address: '',
+                university: '',
+                course: '',
+                cgpa: ''
+            }
+        }
+    }
 }
 </script>

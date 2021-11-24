@@ -2,4 +2,7 @@
     background-color: $bg;
     color: $color;
     border-color: $purple-color;
+    &:hover {
+        color: $color;
+    }
 }
