@@ -1,6 +1,6 @@
 <template>
 
-    <div class="d-flex">
+    <div class="d-md-flex">
         <div>
             <ApplicantSideBar />
         </div>
@@ -8,7 +8,7 @@
         <div>
 
             <div class="header assessment-header">
-                <div id="">
+                <div class="dashboard-header-wrapper">
                     <h2 class="dashboard-header">Take Assessment</h2>
                     <p class="fst-italic fs-6">Click the finish button below to submit assessment, you can go back at any time to edit your answers.</p>
                 </div>
@@ -25,21 +25,40 @@
 
                 <ul class="applicant-question">
                     <li>
-                        A. To reduce the file size of images and videos.
+                        <img src="../assets/icons/option.svg" alt="option" />
+                        <span class="question-option ms-4">
+                            A. To reduce the file size of images and videos.
+                        </span>
                     </li>
 
                      <li>
-                        B. To speed up 3D rendering performance.
+                        <img src="../assets/icons/option.svg" alt="option" />
+                        <span class="question-option ms-4">
+                            B. To speed up 3D rendering performance.
+                        </span>
                     </li>
 
                      <li>
-                        C. To support higher video resolutions.
+                        <img src="../assets/icons/option.svg" alt="option" />
+                        <span class="question-option ms-4">
+                            C. To support higher video resolutions.
+                        </span>
                     </li>
 
                      <li>
-                        D. To display more colors in images and videos
+                        <img src="../assets/icons/option.svg" alt="option" />
+                        <span class="question-option ms-4">
+                            D. To display more colors in images and videos
+                        </span>
                     </li>
                 </ul>
+
+                <div class="assessment-btn">
+                    <button class="btn-previous">Previous</button>
+                    <button class="btn-next">Next</button>
+                </div>
+
+                <button class="btn-finish">Finish</button>
                 
                 <!-- <p class="ms-auto me-auto text-center mt-4">We have 4 days left until the next assessment. <br/>Watch this space</p>
                 <router-link :to="{ name: 'TakeAssessment'}">

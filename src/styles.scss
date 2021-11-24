@@ -26,6 +26,11 @@
 .small-screenImg {
     display: none;
 }
+
+.nav-bar {
+    width: 100%;
+}
+
 @media screen and (max-width: 768px) {
     .small-screenImg {
         display: block;
@@ -65,7 +70,7 @@
     display: flex;
     width: 30px;
     margin: 10px 0px 10px;
-    margin-left: 240px;
+    // margin-left: 240px;
     @include media-breakpoint-up(md) {
         display: none;
     }
@@ -118,7 +123,10 @@
 
 
 .header {
-    margin: 107px 0 0px 47px ;
+    margin: 0;
+    @include media-breakpoint-up(md) {
+        margin: 107px 0 0px 47px ;
+    }
 }
 
 .app-date-text {
@@ -156,7 +164,6 @@
     font-size: 48px;
     font-style: normal;
     font-weight: 300;
-    margin-top: 9px;
 }
 
 .min, .sec {
@@ -164,7 +171,7 @@
 }
 
 .take-assessment-content {
-    margin-top: 190px;
+    margin-top: 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -174,4 +181,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 72px;
+}
+
+.question {
+    padding: 10px;
 }
