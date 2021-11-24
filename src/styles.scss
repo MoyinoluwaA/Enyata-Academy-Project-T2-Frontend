@@ -3,7 +3,7 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 
-$font-stack: Lato, sans-serif;
+$font-stack: 'Poppins', sans-serif;
 $primary-color:#2B3C4E;
 $purple-color: #7557D3;
 $background: #FDFDFF;
@@ -12,6 +12,102 @@ $grey-color: #CECECE;
 $im: !important;
 
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font: 100% $font-stack ;
+    overflow-x: hidden; 
+    height: 100vh;
+}
+%btn-shared {
+    box-shadow: none$im;
+    cursor: pointer;
+    border-radius: 2px$im;
+}
+@mixin theme ($theme: $white-color) {
+    background-color: $theme;
+    @extend %btn-shared
+}
+.registerNav {
+    background-color: $white-color;
+    color:$purple-color $im;
+    border-color:$purple-color $im;
+    @extend %btn-shared
+}
+.registerBtnBody {
+    background-color: $purple-color;
+    color: $white-color$im;
+    @extend %btn-shared
+}
+.navbar{
+    .nav-link {
+    color:#211F26B5$im;
+    cursor: pointer;
+    }
+}
+.hero-image {
+    position: relative;
+    left: 70px;
+    bottom: 550px;
+}
+span {
+    color:$purple-color;
+}
+.intro div {
+    height:60vh;
+}
+.intro-header {
+    line-height:1.3;
+    width: 75%;
+}
+.intro-text {
+    padding-top: 180px;
+}
+.intro-text p {
+    width: 80%;
+}
+.why_us {
+    margin-top: 120px;
+}
+.line {
+    height: 2px;
+    width: 25px;
+    background-color: #FDC840;
+}
+.box div:nth-child(odd){
+ background-color: #7557D31A;
+}
+footer {
+    background-color: $purple-color;
+    color: $white-color;
+    height: 100px;
+}
+.small-screenImg {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .small-screenImg {
+        display: block;
+    }
+    .hero-image {
+        display: none;
+    }git
+    .intro-text {
+        margin-top: 110px;
+        padding-top: 0px;
+    }
+    .intro-header {
+        width: auto;
+    }
+    // .intro div {
+    //     height: 50vh;
+    // }
+    .why_us {
+        margin-top:0;
+    }
 
 body {
     font: 100% $font-stack;
