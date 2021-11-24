@@ -76,50 +76,50 @@
     }
 }
 
-.side-menu {
-    display: flex;
-    flex-direction: column;
+.side-bar {
     background-color: $white-color;
     box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
     border-radius: 8px;
     width: 292px;
-    height: 800px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    &-top {
+        background-color: $purple-color;
+        height: 255px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
 
 .profile-img {
     width: 80px;
     height: 80px;
-    margin-top: 76px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 76px auto 0;
 }
 
-.top-side-bar {
-    background-color: $purple-color;
-    height: 255px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.logout { 
+    &-menu {
+        font-size: 16px;
+        color: $primary-color;
+        font-weight: normal;
+        cursor: pointer;
+
+        &s {
+            margin-top: 57px;
+        }
+    }
+    &-img {
+        margin-left: 39px;
+        margin-right: 21px;
+        width: 14.44px;
+        height: 12.37px;
+        cursor: pointer;
+    }
 }
 
-.logout-menus {
-    margin-top: 57px;
-}
-
-.logout-menu {
-    font-size: 16px;
-    color: $primary-color;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.logout-img {
-    margin-left: 39px;
-    margin-right: 21px;
-    width: 14.44px;
-    height: 12.37px;
-    cursor: pointer;
-}
 
 .app-date-text {
     font-size: 48px;
@@ -134,9 +134,10 @@
 .update-wrapper {
     border: 1px solid #ECECF9;
     border-radius: 4px;
-    width: 482px;
     height: 453px;
-    margin-right: 67px;
+    @include media-breakpoint-up(lg) {
+        width: 95%;
+    }
 }
 
 .update-lines {
@@ -170,13 +171,4 @@
 
 .question {
     padding: 10px;
-}
-
-.header {
-    margin: 107px 0 0px 47px;
-    @include media-breakpoint-up(md) {
-        // display: flex;
-        // flex-direction: row;
-        // margin: 107px 0 0px 47px;
-    }
 }

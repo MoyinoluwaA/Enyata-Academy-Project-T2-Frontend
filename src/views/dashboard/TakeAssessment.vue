@@ -1,12 +1,9 @@
 <template>
 
-    <div class="d-md-flex">
-        <div>
-            <ApplicantSideBar />
-        </div>
+    <div>
+        <ApplicantSideBar />
 
-        <div>
-
+        <div class="dashboard-main mb-5">
             <div class="header assessment-header">
                 <div id="">
                     <h2 class="dashboard-header">Take Assessment</h2>
@@ -20,11 +17,11 @@
             </div>
 
             <div class="take-assessment-content">
-                <img class="load-icon" src="../assets/icons/loading-icon.svg" alt="load" />
+                <img class="load-icon" src="../../assets/icons/loading-icon.svg" alt="load" />
                 <p class="ms-auto me-auto text-center mt-4">We have 4 days left until the next assessment. <br/>Watch this space</p>
                 
                 <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentQuestions'}">
-                    <button class="btn-take-assessment ms-auto me-auto">Take Assessment</button>
+                    <button class="btn btn--gray mt-4 mx-auto">Take Assessment</button>
                 </router-link>
             </div>
 

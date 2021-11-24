@@ -1,14 +1,21 @@
 .btn {
     box-shadow: none;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 4px;
 
+    &:focus {
+        box-shadow: none;
+    }
+    
     &-register {
+        border-radius: 2px;
         &-white {
-            @include button($white-color, $purple-color)
+            @extend .btn-register;
+            @include button($white-color, $purple-color);
         }
         &-purple {
-            @include button($purple-color, $white-color)
+            @extend .btn-register;
+            @include button($purple-color, $white-color);
         }
     }
 
@@ -20,52 +27,34 @@
         background: none;
     }
     &-submit {
-        background: $purple-color;
-        color: #fff;
+        @include button($purple-color, $white-color);
         margin-top: 43px $im;
         margin-left: auto;
         margin-right: auto;
         padding: 16px 16px 14px;
         margin-bottom: 30px;
-        border-radius: 4px;
-        border: none;
         @include media-breakpoint-up(sm) {
             width: 379px $im;
         }
     }
-    &-take-assessment {
-        background: $deep-grey;
-        border-radius: 4px;
+    &--gray {
+        @include button($deep-grey, $white-color);
+        border: none;
         width: 205px;
         height: 41px;
-        border: none;
-        margin-top: 24px;
-        color: $white-color;
     }
+
     &-previous {
         background: $white-color;
         width: 125px;
         height: 41px;
         border: 1px solid rgba(0, 0, 0, 0.25);
-        border-radius: 4px;
         color: $color-black;
     }
+
     &-next {
-        background: $purple-color;
+        @include button($purple-color, $white-color);
         width: 125px;
         height: 41px;
-        border-radius: 4px;
-        border: none;
-        color: $white-color;
-    }
-
-    &-finish {
-        background: $deep-grey;
-        border-radius: 4px;
-        width: 205px;
-        height: 41px;
-        border: none;
-        color: $white-color;
-        margin: 74px auto 100px auto;
     }
 }

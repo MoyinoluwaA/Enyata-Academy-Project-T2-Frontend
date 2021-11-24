@@ -1,4 +1,16 @@
 .dashboard {
+    &-main {
+        @include media-breakpoint-up(md) {
+            padding-left: 292px;
+        }
+        &-content {
+            margin: 60px 32px;
+            @include media-breakpoint-up (sm) {
+                margin: 107px 61px 86px 47px;
+            }
+        }
+    }
+
     &-link {
         text-decoration: none;
         color: $primary-color;
@@ -48,8 +60,6 @@
     }
     
     &-content {
-        display: flex;
-        flex-direction: row;
         margin-top: 61px;
     }
 

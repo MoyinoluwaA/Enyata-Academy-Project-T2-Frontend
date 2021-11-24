@@ -17,7 +17,6 @@
         }
     }
     
-
     &-date {
         font-size: 14px;
         color: $primary-color;
@@ -25,7 +24,12 @@
     }
     
     &-status {
-        margin-left: 120px;
+        @include media-breakpoint-up(sm) {
+            margin-left: 60px;
+        }
+        @include media-breakpoint-up(lg) {
+            margin-left: 120px;
+        }
 
         &-text {
             font-size: 14px;

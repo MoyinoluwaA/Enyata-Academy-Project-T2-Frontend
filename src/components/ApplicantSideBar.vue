@@ -13,7 +13,7 @@
                         <div class="d-md-none collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                                <div class="top-side-bar">
+                                <div class="side-bar-top">
                                     <img class="profile-img" src="../assets/icons/profile-dp.svg" alt="profile-img">
 
                                     <p class="applicant-name text-center">Jane Doe</p>
@@ -48,8 +48,8 @@
                     </div>
                 </nav>
             </div>
-            <div class="side-menu d-none d-md-block">
-                <div class="top-side-bar">
+            <div class="side-bar d-none d-md-block">
+                <div class="side-bar-top">
                     <img class="profile-img" src="../assets/icons/profile-dp.svg" alt="profile-img">
 
                     <p class="applicant-name text-center">Jane Doe</p>
