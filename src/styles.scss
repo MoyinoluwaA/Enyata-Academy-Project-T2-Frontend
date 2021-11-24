@@ -1,13 +1,15 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "./assets/scss/base.scss";
-
 @import "./assets/scss/components/btn.scss";
 @import "./assets/scss/components/intro.scss";
 @import "./assets/scss/components/text.scss";
 @import "./assets/scss/components/footer.scss";
 
 @import "./assets/scss/pages/home.scss";
-
+@import "./assets/scss/pages/applicant.scss";
+@import "./assets/scss/pages/application.scss";
+@import "./assets/scss/pages/assessment.scss";
+@import "./assets/scss/pages/dashboard.scss";
 
 .why_us {
     margin-top: 120px;
@@ -24,6 +26,11 @@
 .small-screenImg {
     display: none;
 }
+
+.nav-bar {
+    width: 100%;
+}
+
 @media screen and (max-width: 768px) {
     .small-screenImg {
         display: block;
@@ -39,32 +46,12 @@
     }
 }
 
-.application {
-    color: $primary-color;
-    background: $background;
-}
-
 .enyata-logo {
     margin-top: 8vh;
 }
 
 .upload-file {
     visibility: hidden;
-}
-
-.application-form-details {
-    padding-top: 5vh;
-    background: $white-color;
-    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
-    border-radius: 8px;
-    padding: 53px 71px 39px 61px;
-    @include media-breakpoint-up(lg) {
-        margin: 0 83px;
-    }
-}
-
-.application-form {
-    padding-top: 32px;
 }
 
 .form-control {
@@ -75,4 +62,121 @@
 .input-date {
     color: $grey-color;
     font-size: 10px;
+}
+
+
+// Side Bar Nav
+.hamburger {
+    display: flex;
+    width: 30px;
+    margin: 10px 0px 10px;
+    // margin-left: 240px;
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+}
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: $white-color;
+    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+    border-radius: 8px;
+    width: 292px;
+    height: 800px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    margin-top: 76px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-side-bar {
+    background-color: $purple-color;
+    height: 255px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logout-menus {
+    margin-top: 57px;
+}
+
+.logout-menu {
+    font-size: 16px;
+    color: $primary-color;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.logout-img {
+    margin-left: 39px;
+    margin-right: 21px;
+    width: 14.44px;
+    height: 12.37px;
+    cursor: pointer;
+}
+
+.app-date-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.pending-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.update-wrapper {
+    border: 1px solid #ECECF9;
+    border-radius: 4px;
+    width: 482px;
+    height: 453px;
+    margin-right: 67px;
+}
+
+.update-lines {
+    margin-top: 30px;
+}
+
+
+
+.timer {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.min, .sec {
+    font-size: 12px;
+}
+
+.take-assessment-content {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.load-icon {
+    margin-left: auto;
+    margin-right: auto;
+    width: 72px;
+}
+
+.question {
+    padding: 10px;
+}
+
+.header {
+    margin: 107px 0 0px 47px;
+    @include media-breakpoint-up(md) {
+        // display: flex;
+        // flex-direction: row;
+        // margin: 107px 0 0px 47px;
+    }
 }

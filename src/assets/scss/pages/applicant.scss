@@ -1,0 +1,27 @@
+.applicant {
+    &-name {
+        color: $white-color;
+        font-size: 20px;
+        margin-top: 13px;
+    }
+    
+    &-mail {
+        color: $white-color;
+        font-size: 16px;
+        margin-top: 5px;
+        font-style: italic;
+        margin-bottom: 38px;
+    }
+
+    &-question {
+        width: fit-content;
+        li {
+            list-style-type: none;
+            margin-top: 37px; 
+        }
+    }
+    &-selected-answer {
+        background: #31D283;
+        padding: 6px;
+    }
+}

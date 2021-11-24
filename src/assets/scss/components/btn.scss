@@ -33,4 +33,39 @@
             width: 379px $im;
         }
     }
+    &-take-assessment {
+        background: $deep-grey;
+        border-radius: 4px;
+        width: 205px;
+        height: 41px;
+        border: none;
+        margin-top: 24px;
+        color: $white-color;
+    }
+    &-previous {
+        background: $white-color;
+        width: 125px;
+        height: 41px;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        color: $color-black;
+    }
+    &-next {
+        background: $purple-color;
+        width: 125px;
+        height: 41px;
+        border-radius: 4px;
+        border: none;
+        color: $white-color;
+    }
+
+    &-finish {
+        background: $deep-grey;
+        border-radius: 4px;
+        width: 205px;
+        height: 41px;
+        border: none;
+        color: $white-color;
+        margin: 74px auto 100px auto;
+    }
 }

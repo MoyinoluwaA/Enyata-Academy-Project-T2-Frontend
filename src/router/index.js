@@ -16,6 +16,21 @@ const routes = [
         component: () => import('../views/SignUp.vue')
     },
     {
+        path: '/applicantDashboard',
+        name: 'ApplicantDashboard',
+        component: () => import('../views/ApplicantDashboard.vue')
+    },
+    {
+        path: '/takeAssessment',
+        name: 'TakeAssessment',
+        component: () => import('../views/TakeAssessment.vue')
+    },
+    {
+        path: '/assessmentQuestions/:id',
+        name: 'AssessmentQuestions',
+        component: () => import('../views/AssessmentQuestions.vue')
+    },
+    {
         path: '/signin',
         name: 'SignIn',
         component: () => import('../views/SignIn.vue')
