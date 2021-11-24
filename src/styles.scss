@@ -287,3 +287,57 @@ body {
     align-items: center;
     margin-top: 140px;
 }
+
+// Assessment Header
+.assessment-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.assessment-timer-wrapper {
+    margin-left: 260px;
+}
+
+.assessment-timer-text {
+    font-size: 14px;
+    color: $primary-color;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.timer {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 300;
+    margin-top: 9px;
+}
+
+.min, .sec {
+    font-size: 12px;
+}
+
+.take-assessment-content {
+    margin-top: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.load-icon {
+    margin-left: auto;
+    margin-right: auto;
+    width: 72px;
+}
+
+.assessment-question-wrapper {
+    margin-top: 64px;
+}
+
+.applicant-question {
+    margin-top: 48px;
+    li {
+        list-style-type: none;
+        margin-top: 37px;
+        margin-left: 349px;
+    }
+}
