@@ -11,11 +11,6 @@ const routes = [
         component: Home
     },
     {
-        path: '/createApplication',
-        name: 'CreateApplication',
-        component: () => import('../views/CreateApplication.vue')
-    },
-    {
         path: '/signup',
         name: 'SignUp',
         component: () => import('../views/SignUp.vue')
@@ -39,6 +34,11 @@ const routes = [
         path: '/signin',
         name: 'SignIn',
         component: () => import('../views/SignIn.vue')
+    },
+    {
+        path: '/createApplication',
+        name: 'CreateApplication',
+        component: () => import('../views/CreateApplication.vue')
     }
 ]
 
