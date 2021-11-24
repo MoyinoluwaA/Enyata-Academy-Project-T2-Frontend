@@ -24,8 +24,10 @@
                     </div>
 
                 <div class="assessment-menus">
-                    <img class="assessment-img" src="../assets/icons/assessment-icon.svg" alt="assement"/>
-                    <span class="assessment-menu">Assessment</span>
+                    <router-link :to="{ name: 'TakeAssessment' }">
+                        <img class="assessment-img" src="../assets/icons/assessment-icon.svg" alt="assement"/>
+                        <span class="assessment-menu">Assessment</span>
+                    </router-link>
                 </div>
 
                 <div class="logout-menus">
@@ -34,13 +36,6 @@
                 </div>
             </div>
         </div>
-
-<!-- 
-  <div  class="data">
-
-
-  </div> -->
-  
 </template>
 
 <script>

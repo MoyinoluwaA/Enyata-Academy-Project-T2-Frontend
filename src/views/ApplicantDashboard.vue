@@ -34,12 +34,12 @@
               </div>
               <div class="take-assessment-wrapper">
                     <div class="update-wrapper">
-                    <p class="p-4 fw-bold">Take Assessment</p>
-                    <div class="cta-assessment">    
-                        <p class="fs-6 fw-normal text-center mt-auto mb-auto">We have 4 days left until the next assessment.<br/>Watch this space</p>
-                        <button class="btn-take-assessment">Take Assessment</button>
+                        <p class="p-4 fw-bold">Take Assessment</p>
+                        <div class="cta-assessment">    
+                            <p class="fs-6 fw-normal text-center mt-auto mb-auto">We have 4 days left until the next assessment.<br/>Watch this space</p>
+                            <button class="btn-take-assessment">Take Assessment</button>
+                        </div>
                     </div>
-              </div>
               </div>
           </div>
 

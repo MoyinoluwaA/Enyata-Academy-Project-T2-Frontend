@@ -10,6 +10,21 @@ $background: #FDFDFF;
 $white-color: #fff;
 $grey-color: #CECECE;
 $deep-grey:#B1B1B1;
+
+a.router-link-exact-active {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: $primary-color;
+}
+
+a:active {
+    color: $purple-color;
+}
+
 // $im: !important;
 
 
@@ -237,9 +252,14 @@ body {
 }
 
 .dashboard-bottom {
-    margin-top: 97px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-top: 30px;
+    @include media-breakpoint-up(lg) {
+        margin-top: 97px;
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 .update-wrapper {
@@ -248,6 +268,13 @@ body {
     width: 482px;
     height: 453px;
     margin-right: 67px;
+}
+
+.take-assessment-wrapper {
+    margin-top: 30px;
+    @include media-breakpoint-up(lg) {
+        margin-top: 0;
+    }
 }
 
 .upate-lines {
