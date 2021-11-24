@@ -25,4 +25,4 @@ export default {
         Button
     }
 }
-</script>
+</script> 
