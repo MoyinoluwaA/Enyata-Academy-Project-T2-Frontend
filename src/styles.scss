@@ -9,7 +9,8 @@ $purple-color: #7557D3;
 $background: #FDFDFF;
 $white-color: #fff;
 $grey-color: #CECECE;
-$im: !important;
+$deep-grey:#B1B1B1;
+// $im: !important;
 
 
 
@@ -34,7 +35,7 @@ body {
     &-submit {
         background: $purple-color;
         color: #fff;
-        margin-top: 43px $im;
+        // margin-top: 43px $im;
         margin-left: auto;
         margin-right: auto;
         padding: 16px 16px 14px;
@@ -42,8 +43,17 @@ body {
         border-radius: 4px;
         border: none;
         @include media-breakpoint-up(sm) {
-            width: 379px $im;
+            // width: 379px $im;
         }
+    }
+    &-take-assessment {
+        background: $deep-grey;
+        border-radius: 4px;
+        width: 205px;
+        height: 41px;
+        border: none;
+        margin-top: 24px;
+        color: $white-color;
     }
 }
 
@@ -74,4 +84,179 @@ body {
 .input-date {
     color: $grey-color;
     font-size: 10px;
+}
+
+
+// Side Bar Nav
+.hamburger {
+    display: flex;
+    width: 30px;
+    margin: 10px 0px 10px;
+    margin-left: 240px;
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+}
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: $white-color;
+    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+    border-radius: 8px;
+    width: 292px;
+    height: 800px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    margin-top: 76px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-side-bar {
+    background-color: $purple-color;
+    height: 255px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.applicant-name {
+    color: $white-color;
+    font-size: 20px;
+    margin-top: 13px;
+}
+
+.applicant-mail {
+    color: $white-color;
+    font-size: 16px;
+    margin-top: 5px;
+    font-style: italic;
+    margin-bottom: 38px;
+}
+
+.dashboard-menus {
+    margin-top: 42px;
+    font-size: 16px;
+    color: $primary-color;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-img {
+    margin-left: 39px;
+    margin-right: 16px;
+    width: 14.44px;
+    height: 12.37px;
+    cursor: pointer;
+}
+
+.assessment-menus {
+    margin-top: 28px;
+    cursor: pointer;
+}
+
+.logout-menus {
+    margin-top: 57px;
+}
+
+.assessment-menu {
+    font-size: 16px;
+    color: $primary-color;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.assessment-img {
+    margin-left: 39px;
+    margin-right: 19px;
+    width: 14.44px;
+    height: 12.37px;
+    cursor: pointer;
+}
+
+.logout-menu {
+    font-size: 16px;
+    color: $primary-color;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.logout-img {
+    margin-left: 39px;
+    margin-right: 21px;
+    width: 14.44px;
+    height: 12.37px;
+    cursor: pointer;
+}
+
+// Applicant Dashboard
+.header {
+    margin: 107px 0 0px 47px ;
+}
+
+.dashboard-header {
+    font-weight: 300;
+    font-size: 43px;
+    color: $primary-color;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 61px;
+}
+
+.application-date {
+    font-size: 14px;
+    color: $primary-color;
+    font-style: normal;
+}
+
+.application-status {
+    margin-left: 156px;
+}
+
+.application-status-text {
+    font-size: 14px;
+    color: $primary-color;
+    font-style: normal;
+}
+
+.app-date-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.pending-text {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.dashboard-bottom {
+    margin-top: 97px;
+    display: flex;
+    flex-direction: row;
+}
+
+.update-wrapper {
+    border: 1px solid #ECECF9;
+    border-radius: 4px;
+    width: 482px;
+    height: 453px;
+    margin-right: 67px;
+}
+
+.upate-lines {
+    margin-top: 30px;
+}
+
+.cta-assessment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 140px;
 }
