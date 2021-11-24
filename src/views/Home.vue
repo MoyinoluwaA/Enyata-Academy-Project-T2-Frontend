@@ -4,13 +4,13 @@
 		<main class="container">
 			<section class="row intro">
 				<div class="col-lg-6 col-md-6 col-sm-12 intro-text">
-					<h1 class="fw-bold intro-header">Ever had a Dream of Becoming a Software <span>Engineer?</span></h1>
+					<h1 class="fw-bold intro-header">Ever had a Dream of Becoming a Software <span class="text--purple">Engineer?</span></h1>
 					<p class="fs-5 mt-4 text-secondary">Join enyata academy today and bring your long awaiting dream to reality.</p>
-					<Button btnText='Register Now' btnStyle='btn btn-lg registerBtnBody registerNav mt-4'/>
+					<Button btnText='Register Now' btnStyle='btn btn-lg btn-register-purple registerNav mt-4'/>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<img src="../assets/Landingpage.png" class='hero-image' alt="hero-image">
-					<img src="../assets/Group 6.png" class="small-screenImg img-fluid" alt="">
+				<div class="col-lg-6 col-md-6 col-sm-12 order-first order-md-last">
+					<!-- <img src="../assets/images/Landingpage.png" class='hero-image' alt="hero-image"> -->
+					<img src="../assets/images/Group 6.png" class="small-screenImg img-fluid" alt="">
 				</div>
 			</section>
 			<section class='row why_us '>
@@ -19,7 +19,7 @@
 					<h5 class="mb-0 fw-bold">Why us?</h5>
 				</div>
 				<section class="row box flex-wrap mx-auto">
-					<div  class='col-lg-3 col-md-6 col-sm-12 mt-5 p-4 ' v-for="reason in reasons" :key=reason.id>
+					<div  class='col-lg-3 col-md-6 col-sm-12 mt-3 mt-md-5 p-4 ' v-for="reason in reasons" :key=reason.id>
 						<h5>{{reason.title}}</h5>
 						<p class="text-secondary lh-base mt-3 ">{{reason.description}}</p>
 					</div>
