@@ -33,4 +33,11 @@
             width: 379px $im;
         }
     }
+    &-login {
+        background: $purple-color;
+        border:none;
+        height: 48px;
+        color: #fff;
+        font-weight: 600;
+    }
 }
