@@ -33,15 +33,12 @@
         font-weight: 300;
         font-size: 29px;
         color: $primary-color;
-        // text-align: center;
         @include media-breakpoint-up(md) {
             font-weight: 300;
             font-size: 43px;
             color: $primary-color;
         }
         &-wrapper {
-            display: flex;
-            flex-direction: column;
             @include media-breakpoint-up(md) {
                 font-weight: 300;
                 font-size: 43px;

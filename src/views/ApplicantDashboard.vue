@@ -7,12 +7,12 @@
       <div class="header">
 
           <div class="">
-            <h2 class="dashboard-header">Dashboard</h2>
+            <h2 class="dashboard-header-wrapper">Dashboard</h2>
             <p class="fst-italic fs-6">Your Application is currently being review, you wil be notified if successful</p>
           </div>
 
           <div class="dashboard-content">
-              <div>
+              <div class="">
                   <p class="application-date">Date of Application</p>
                   <h3 class="app-date-text">09.09.19</h3>
                   <img src="../assets/icons/date-of-application-status.svg" alt="status" />
@@ -25,15 +25,15 @@
           </div>
 
           <div class="dashboard-bottom pb-5">
-              <div class="update-wrapper col-md-6">
+              <div class="update-wrapper col-lg-6 col-12">
                   <p class="p-4 fw-bold">Updates</p>
                   <img class="update-lines p-4" src="../assets/icons/update-line.svg" alt="line" />
                   <img class="update-lines p-4" src="../assets/icons/update-line.svg" alt="line" />
                   <img class="update-lines p-4" src="../assets/icons/update-line.svg" alt="line" />
                   <img class="update-lines p-4" src="../assets/icons/update-line.svg" alt="line" />
               </div>
-              <div class="take-assessment-wrapper col-md-6">
-                    <div class="update-wrapper">
+              <div class="take-assessment-wrapper col-lg-6 col-12">
+                    <div class="update-wrapper mt-4 mt-lg-0">
                         <p class="p-4 fw-bold">Take Assessment</p>
                         <div class="assessment-cta">    
                             <p class="fs-6 fw-normal text-center mt-auto mb-auto">We have 4 days left until the next assessment.<br/>Watch this space</p>

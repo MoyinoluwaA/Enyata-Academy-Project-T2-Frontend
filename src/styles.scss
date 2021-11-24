@@ -121,14 +121,6 @@
     cursor: pointer;
 }
 
-
-.header {
-    margin: 0;
-    @include media-breakpoint-up(md) {
-        margin: 107px 0 0px 47px ;
-    }
-}
-
 .app-date-text {
     font-size: 48px;
     font-weight: 300;
@@ -145,13 +137,6 @@
     width: 482px;
     height: 453px;
     margin-right: 67px;
-}
-
-.take-assessment-wrapper {
-    margin-top: 30px;
-    @include media-breakpoint-up(lg) {
-        margin-top: 0;
-    }
 }
 
 .update-lines {
@@ -185,4 +170,13 @@
 
 .question {
     padding: 10px;
+}
+
+.header {
+    margin: 107px 0 0px 47px;
+    @include media-breakpoint-up(md) {
+        // display: flex;
+        // flex-direction: row;
+        // margin: 107px 0 0px 47px;
+    }
 }
