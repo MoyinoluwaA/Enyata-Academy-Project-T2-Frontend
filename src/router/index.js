@@ -40,6 +40,11 @@ const routes = [
         name: 'AssessmentQuestions',
         component: () => import('../views/dashboard/AssessmentQuestions.vue')
     },
+    {
+        path: '/assessmentCompleted',
+        name: 'AssessmentCompleted',
+        component: () => import('../views/dashboard/AssessmentCompleted.vue')
+    },
 ]
 
 const router = new VueRouter({

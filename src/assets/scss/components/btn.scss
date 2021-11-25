@@ -63,5 +63,11 @@
         width: 125px;
         height: 41px;
     }
+
+    &-home {
+        @include button($purple-color, $white-color);
+        width: 205px;
+        height: 41px;
+    }
 }
 }

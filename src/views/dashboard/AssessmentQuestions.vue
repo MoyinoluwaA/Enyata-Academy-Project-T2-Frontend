@@ -58,7 +58,9 @@
                 </div>
 
                 <div class="text-center mt-4 mb-5">
-                    <Button btnText="Finish" btnStyle="btn--gray my-5" />
+                    <router-link :to="{ name: 'AssessmentCompleted' }">
+                        <Button btnText="Finish" btnStyle="btn--gray my-5" />
+                    </router-link>
                 </div>
             </div>
 

@@ -7,22 +7,22 @@
             <div class="header assessment-header">
                 <div id="">
                     <h2 class="dashboard-header">Take Assessment</h2>
-                    <p class="fst-italic fs-6">Click the button below to start assessment, you have limited time for this test</p>
+                    <p class="fst-italic fs-6">Thank you!</p>
                 </div>
 
                 <div class="assessment-timer-wrapper">
                     <p class="assessment-timer-text">Timer</p>
-                    <p class="timer"><span class="timer">00</span><span class="min">min</span><span>000</span><span class="sec">sec</span>  </p>
+                    <p class="timer"><span class="timer">23</span><span class="min">min</span><span>043</span><span class="sec">sec</span>  </p>
                 </div>
             </div>
 
             <div class="take-assessment-content">
-                <img class="load-icon" src="../../assets/icons/loading-icon.svg" alt="load" />
-                <p class="ms-auto me-auto text-center mt-4">We have 4 days left until the next assessment. <br/>Watch this space</p>
+                <img class="load-icon" src="../../assets/icons/congratulatory-img.svg" alt="congratulations" />
+                <p class="ms-auto me-auto text-center mt-4">We have received your assessment test, we will get back to you soon.<br/>Best of luck</p>
                 
                 <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentQuestions'}">
-                    <!-- <Button btnText="Finish" btnStyle="btn--gray mt-4 mx-auto" /> -->
-                    <button class="btn btn--gray mt-4 mx-auto">Take Assessment</button>
+                    <Button btnText="Home" btnStyle="btn-home mt-4 mx-auto" />
+                    <!-- <button class="btn btn--gray mt-4 mx-auto">Home</button> -->
                 </router-link>
             </div>
 
