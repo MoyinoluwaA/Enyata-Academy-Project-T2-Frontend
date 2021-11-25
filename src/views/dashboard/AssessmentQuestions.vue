@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="assessment-question-wrapper">
+            <div class="assessment-question-wrapper mb-5">
                 <p class="question-number text-center fw-bold fs-6 fst-italic">Question 1</p>
                 <p class="question text-center fw-bold fs-4 fst-italic">What is the purpose of HDR technology?</p>
 
@@ -58,7 +58,9 @@
                 </div>
 
                 <div class="text-center mt-4 mb-5">
-                    <Button btnText="Finish" btnStyle="btn--gray my-5" />
+                    <router-link :to="{ name: 'AssessmentCompleted' }">
+                        <Button btnText="Finish" btnStyle="btn--gray my-5" />
+                    </router-link>
                 </div>
             </div>
 
