@@ -3,7 +3,7 @@
             <div class="d-md-none nav-bar">
                 <nav class="navbar navbar-light bg-light">
                     <div class="container-fluid">
-                            <router-link class="navbar-brand" :to="{ name: 'Home'}">
+                            <router-link class="navbar-brand" :to="{ name: 'ApplicantDashboard'}">
                                 <img src="../assets/icons/enyata-logo.svg" />
                             </router-link>
                         <div class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

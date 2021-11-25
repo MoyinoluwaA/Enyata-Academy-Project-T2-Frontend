@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="assessment-question-wrapper">
+            <div class="assessment-question-wrapper mb-5">
                 <p class="question-number text-center fw-bold fs-6 fst-italic">Question 1</p>
                 <p class="question text-center fw-bold fs-4 fst-italic">What is the purpose of HDR technology?</p>
 

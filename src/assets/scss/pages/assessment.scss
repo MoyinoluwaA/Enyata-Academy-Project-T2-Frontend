@@ -49,8 +49,7 @@
             margin-left: 380px;
         }
         &-completed {
-            margin-right: auto;
-            margin-left: auto;
+            margin: 0 auto;
             @include media-breakpoint-up(md) {
                 margin-left: 220px;
                 margin-right: 30px;
@@ -78,7 +77,6 @@
 
     &-question-wrapper {
         margin-top: 64px;
-        // align-content: center;
         @include media-breakpoint-up(lg) {
         }
     }

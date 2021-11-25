@@ -21,8 +21,7 @@
                 <p class="ms-auto me-auto text-center mt-4">We have 4 days left until the next assessment. <br/>Watch this space</p>
                 
                 <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentQuestions'}">
-                    <!-- <Button btnText="Finish" btnStyle="btn--gray mt-4 mx-auto" /> -->
-                    <button class="btn btn--gray mt-4 mx-auto">Take Assessment</button>
+                    <Button btnText="Take Assessment" btnStyle="btn btn--gray" class="mt-4 mx-auto" />
                 </router-link>
             </div>
 
@@ -34,9 +33,11 @@
 
 <script>
 import ApplicantSideBar from "@/components/ApplicantSideBar.vue"
+import Button from "@/components/Button.vue"
 export default {
     components: {
-        ApplicantSideBar
+        ApplicantSideBar,
+        Button
     }
 }
 </script>

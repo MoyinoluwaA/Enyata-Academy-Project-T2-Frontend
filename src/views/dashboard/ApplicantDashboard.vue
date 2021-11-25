@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <div class="dashboard-bottom">
+                <div class="dashboard-bottom mb-5">
                     <div class="col-lg-6 col-12">
                         <div class="update-wrapper me-auto">
                             <p class="p-4 fw-bold">Updates</p>

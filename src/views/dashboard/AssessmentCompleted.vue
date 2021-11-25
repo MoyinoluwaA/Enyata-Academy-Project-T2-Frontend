@@ -16,12 +16,11 @@
                 </div>
             </div>
 
-            <div class="take-assessment-content">
+            <div class="take-assessment-content mb-5">
                 <img class="load-icon" src="../../assets/icons/congratulatory-img.svg" alt="congratulations" />
                 <p class="ms-auto me-auto text-center mt-4">We have received your assessment test, we will get back to you soon.<br/>Best of luck</p>
                 
-                <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'Home'}">
-                    <!-- <Button btnText="Next" btnStyle="btn-next" /> -->
+                <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'ApplicantDashboard'}">
                     <Button btnText="Home" btnStyle="btn-home" />
                 </router-link>
             </div>
