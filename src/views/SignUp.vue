@@ -79,7 +79,7 @@ import formInput from "@/components/Input.vue"
 export default {
     name: 'SignUp',
 	components: {
-        formInput,
+            formInput,
 	},
     data() {
         return {
