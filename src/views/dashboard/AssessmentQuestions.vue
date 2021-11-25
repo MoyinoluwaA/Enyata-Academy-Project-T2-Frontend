@@ -6,9 +6,14 @@
                 <p class="fst-italic fs-6">Click the finish button below to submit assessment, you can go back at any time to edit your answers.</p>
             </div>
 
-            <div class="assessment-timer-wrapper">
-                <p class="assessment-timer-text">Timer</p>
-                <p class="timer"><span class="timer">00</span><span class="min">min</span><span>010</span><span class="sec">sec</span>  </p>
+            <div class="assessment-timer-wrapper mt-4 mt-md-0">
+                <p class="assessment-timer-text mb-1">Timer</p>
+                <p class="timer">
+                    <span class="timer">00</span>
+                    <span class="timer-min">min</span>
+                    <span>010</span>
+                    <span class="timer-sec">sec</span>  
+                </p>
             </div>
         </div>
 

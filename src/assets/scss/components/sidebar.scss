@@ -1,0 +1,52 @@
+.side-bar {
+    background-color: $white-color;
+    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+    border-radius: 8px;
+    width: 292px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    &-top {
+        background-color: $purple-color;
+        height: 255px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+}
+
+.hamburger {
+    display: flex;
+    width: 30px;
+    margin: 10px 0px 10px;
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    margin: 76px auto 0;
+}
+
+.logout { 
+    &-menu {
+        font-size: 16px;
+        color: $primary-color;
+        font-weight: normal;
+        cursor: pointer;
+
+        &s {
+            margin-top: 57px;
+        }
+    }
+    &-img {
+        margin-left: 39px;
+        margin-right: 21px;
+        width: 14.44px;
+        height: 12.37px;
+        cursor: pointer;
+    }
+}

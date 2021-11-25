@@ -8,12 +8,12 @@
         <div class="dashboard-content d-flex flex-column flex-sm-row">
             <div>
                 <p class="application-date">Date of Application</p>
-                <h3 class="app-date-text">09.09.19</h3>
+                <h3 class="text-large">09.09.19</h3>
                 <img src="../../assets/icons/date-of-application-status.svg" alt="status" />
             </div>
             <div class="application-status mt-4 mt-sm-0">
                 <p class="application-status-text">Application Status</p>
-                <h3 class="pending-text">Pending</h3>
+                <h3 class="text-large">Pending</h3>
                 <img src="../../assets/icons/pending-status.svg" alt="status" />
             </div>
         </div>

@@ -1,0 +1,23 @@
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#input-box {
+    border-color:#BDBDBD ;
+}
+
+.enyata-logo {
+    margin-top: 8vh;
+}
+
+.form-control {
+    height: 48px;
+    border: 1.5px solid $primary-color;
+}
+
+.input-date {
+    color: $grey-color;
+    font-size: 10px;
+}
