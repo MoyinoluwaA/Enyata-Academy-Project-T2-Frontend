@@ -41,6 +41,14 @@ export default {
     name: 'SignIn',
 	components: {
         formInput,
-	}
+	},
+     data() {
+        return {
+            user: {
+                email: '',
+                password: '',
+            }
+        }
+     }
 }
 </script>
