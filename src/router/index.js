@@ -21,7 +21,7 @@ const routes = [
         component: () => import('../views/SignIn.vue')
     },
     {
-        path: '/forgotPassword',
+        path: '/forgot-password',
         name: 'ForgotPassword',
         component: () => import('../views/ForgotPassword.vue')
     },
@@ -31,25 +31,33 @@ const routes = [
         component: () => import('../views/CreateApplication.vue')
     },
     {
-        path: '/applicantDashboard',
-        name: 'ApplicantDashboard',
-        component: () => import('../views/dashboard/ApplicantDashboard.vue')
-    },
-    {
-        path: '/takeAssessment',
-        name: 'TakeAssessment',
-        component: () => import('../views/dashboard/TakeAssessment.vue')
-    },
-    {
-        path: '/assessmentQuestions/:id',
-        name: 'AssessmentQuestions',
-        component: () => import('../views/dashboard/AssessmentQuestions.vue')
-    },
-    {
-        path: '/assessmentCompleted',
-        name: 'AssessmentCompleted',
-        component: () => import('../views/dashboard/AssessmentCompleted.vue')
-    },
+		path: '/dashboard',
+        redirect: '/dashboard/home',
+		name: 'Dashboard',
+		component: () => import(/* webpackChunkName: "about" */ '../views/dashboard/index.vue'),
+		children: [
+			{
+				path: 'home',
+				name: 'ApplicantDashboard',
+				component: () => import('../views/dashboard/ApplicantDashboard.vue')
+			},
+			{
+				path: 'takeAssessment',
+				name: 'TakeAssessment',
+				component: () => import('../views/dashboard/TakeAssessment.vue')
+			},
+            {
+				path: 'assessmentQuestion',
+				name: 'AssessmentQuestions',
+				component: () => import('../views/dashboard/AssessmentQuestions.vue')
+			},
+            {
+				path: 'assessmentCompleted',
+				name: 'AssessmentCompleted',
+				component: () => import('../views/dashboard/AssessmentCompleted.vue')
+			}
+			]
+	}
 ]
 
 const router = new VueRouter({
