@@ -201,3 +201,8 @@
 .question {
     padding: 10px;
 }
+#btn-signup {
+    @include media-breakpoint-down(sm) {
+        width: 330px;
+    }
+}

@@ -9,7 +9,7 @@
                     <formInput
                         type='email'
                         identifier='email'
-                        labelStyle='form-label input-Box'
+                        labelStyle='form-label'
                         inputType='email'
                         label='Email Address'
                         v-model="email"
@@ -17,7 +17,7 @@
                     <formInput
                         type='password'
                         identifier='password'
-                        labelStyle='form-label input-Box'
+                        labelStyle='form-label'
                         inputType='password'
                         label='Password'
                         v-model="email"
@@ -41,6 +41,14 @@ export default {
     name: 'SignIn',
 	components: {
         formInput,
-	}
+	},
+     data() {
+        return {
+            user: {
+                email: '',
+                password: '',
+            }
+        }
+     }
 }
 </script>
