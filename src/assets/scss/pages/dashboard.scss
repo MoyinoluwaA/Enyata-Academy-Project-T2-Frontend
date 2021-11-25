@@ -14,14 +14,12 @@
     &-link {
         text-decoration: none;
         color: $primary-color;
+        padding: 16px;
 
-        .router-link-exact-active {
+        &.router-link-exact-active {
+            border-left: 4px solid $purple-color;
+            font-weight: bold;
             color: $primary-color;
-            text-decoration: none;
-        }
-        
-        &:active {
-            color: $purple-color;
         }
     }
 
@@ -29,7 +27,6 @@
         margin-top: 42px;
         font-size: 16px;
         color: $primary-color;
-        font-weight: bold;
         cursor: pointer;
     }
     
