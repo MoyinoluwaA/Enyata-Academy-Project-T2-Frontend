@@ -26,7 +26,7 @@
                     <button class="btn col-md-6 col-12 btn-login mt-3" id="submit-btn" type="submit">Sign In</button>
                     <div class="d-flex col-md-6 col-12 justify-content-between fst-italic mt-2">
                         <p class='labelForm text--labelColor'> Don't have an account yet? <router-link to="/signup">Sign Up</router-link></p>
-                        <p class='labelForm text--labelColor'>Forgot Password?</p>
+                        <p class='labelForm text--labelColor'><router-link to="/forgot-password">Forgot Password?</router-link></p>
                     </div>
                 </div>
             </form>
