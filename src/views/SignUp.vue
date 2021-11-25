@@ -61,12 +61,14 @@
                             v-model="user.confirmPassword"
                         />
                     </div> 
+                    <div class="row justify-content-center">
+                        <div class=" row btn col-md-6 col-sm-12 mt-3">
+                            <button class="btn btn-login" id="btn-signup" type="submit">Sign Up</button>
+                            <p class='labelForm text--labelColor text-center'>Already have an account? <router-link to="/signin" class='text-decoration-none text--labelColor'>Sign In</router-link></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="row justify-content-center">
-                    <button class="btn col-md-6 col-sm-12 btn-login mt-3" id="btn-signup" type="submit">Sign Up</button>
-                </div>
-                <p class='labelForm text--labelColor text-center'>Already have an account? <router-link to="/signin" class='text-decoration-none text--labelColor'>Sign In</router-link></p>
-            </form>
+                </form>
         </div>
     </section>
 </template>
