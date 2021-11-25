@@ -39,7 +39,9 @@
                                 <p class="p-4 fw-bold">Take Assessment</p>
                                 <div class="assessment-cta">    
                                     <p class="fs-6 fw-normal text-center mt-auto mb-auto">We have 4 days left until the next assessment.<br/>Watch this space</p>
-                                    <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
+                                    <router-link :to="{ name: 'TakeAssessment'}">
+                                        <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
+                                    </router-link>
                                 </div>
                             </div>
                     </div>

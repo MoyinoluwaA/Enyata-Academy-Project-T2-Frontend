@@ -10,7 +10,7 @@
                     <p class="fst-italic fs-6">Thank you!</p>
                 </div>
 
-                <div class="assessment-timer-wrapper">
+                <div class="assessment-timer-wrapper-completed">
                     <p class="assessment-timer-text">Timer</p>
                     <p class="timer"><span class="timer">23</span><span class="min">min</span><span>043</span><span class="sec">sec</span>  </p>
                 </div>
@@ -20,9 +20,9 @@
                 <img class="load-icon" src="../../assets/icons/congratulatory-img.svg" alt="congratulations" />
                 <p class="ms-auto me-auto text-center mt-4">We have received your assessment test, we will get back to you soon.<br/>Best of luck</p>
                 
-                <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentQuestions'}">
-                    <Button btnText="Home" btnStyle="btn-home mt-4 mx-auto" />
-                    <!-- <button class="btn btn--gray mt-4 mx-auto">Home</button> -->
+                <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'Home'}">
+                    <!-- <Button btnText="Next" btnStyle="btn-next" /> -->
+                    <Button btnText="Home" btnStyle="btn-home" />
                 </router-link>
             </div>
 
@@ -34,9 +34,11 @@
 
 <script>
 import ApplicantSideBar from "@/components/ApplicantSideBar.vue"
+import Button from "@/components/Button.vue"
 export default {
     components: {
-        ApplicantSideBar
+        ApplicantSideBar,
+        Button
     }
 }
 </script>
