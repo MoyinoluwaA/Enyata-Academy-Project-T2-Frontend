@@ -43,6 +43,7 @@
         height: 48px;
         color: #fff;
         font-weight: 600;
+    }
     &--gray {
         @include button($deep-grey, $white-color);
         border: none;
@@ -63,5 +64,11 @@
         width: 125px;
         height: 41px;
     }
-}
+
+    &-home {
+        @include button($purple-color, $white-color);
+        width: 205px;
+        height: 41px;
+        margin-top: 34px;
+    }
 }
