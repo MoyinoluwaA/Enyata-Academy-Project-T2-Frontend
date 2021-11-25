@@ -4,7 +4,7 @@
 @import "./assets/scss/components/intro.scss";
 @import "./assets/scss/components/text.scss";
 @import "./assets/scss/components/footer.scss";
-
+@import "./assets/scss/variables.scss";
 @import "./assets/scss/pages/home.scss";
 @import "./assets/scss/pages/applicant.scss";
 @import "./assets/scss/pages/application.scss";
@@ -12,7 +12,10 @@
 @import "./assets/scss/pages/dashboard.scss";
 
 .why_us {
-    margin-top: 120px;
+    margin-top: 80px;
+    @include media-breakpoint-up(xl) {
+        margin-top:120px;
+    }
 }
 .line {
     height: 2px;
@@ -22,27 +25,32 @@
 .box div:nth-child(odd){
  background-color: #7557D31A;
 }
+.labelForm {
+    font-size: 14px;
+}
 
 .small-screenImg {
-    display: none;
-}
-
-.nav-bar {
-    width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-    .small-screenImg {
+    display: block;
+    @include media-breakpoint-up(xl) {
         display: block;
     }
-    .hero-image {
-        display: none;
-    }
-    .intro-header {
-        width: auto;
-    }
-    .why_us {
-        margin-top:0;
+}
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+#input-box {
+    height: 48px;
+    border-color:#BDBDBD ;
+}
+.sign-in {
+    font: 100% $font-stack-lato;
+}
+    
+.hero-image {
+    @include media-breakpoint-up(md) {
+    display: none;
     }
 }
 
@@ -152,6 +160,27 @@
     font-weight: 300;
 }
 
+.input-date {
+    color: $grey-color;
+    font-size: 10px;
+}
+.links {
+    overflow: hidden;
+    position: relative;
+}
+.links #myLinks {
+    display: none;
+}
+.links a {
+  text-decoration: none;
+  display: block;
+}
+.links a.icon {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
 .min, .sec {
     font-size: 12px;
 }
