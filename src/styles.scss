@@ -79,7 +79,6 @@
     display: flex;
     width: 30px;
     margin: 10px 0px 10px;
-    // margin-left: 240px;
     @include media-breakpoint-up(md) {
         display: none;
     }

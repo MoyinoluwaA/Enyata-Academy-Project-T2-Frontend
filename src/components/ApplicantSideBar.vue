@@ -24,8 +24,6 @@
                                 <li class="nav-item">
                                     <div class="side-bar-info">
                                         <div class="dashboard-menus">
-                                            <img class="dashboard-stage" src="../assets/icons/dashboard-stage-icon.svg" alt="stage" />
-
                                             <router-link class="dashboard-link" :to="{ name: 'ApplicantDashboard'}">
                                                 <img class="dashboard-img" src="../assets/icons/dashboard-icon.svg" alt="dashboard"/>
                                                 <span class="dashboad-menu">Dashboard</span>
@@ -60,8 +58,6 @@
                 
                 <div class="side-bar-info">
                         <div class="dashboard-menus">
-                            <img class="dashboard-stage" src="../assets/icons/dashboard-stage-icon.svg" alt="stage" />
-
                             <router-link class="dashboard-link" :to="{ name: 'ApplicantDashboard'}">
                                 <img class="dashboard-img" src="../assets/icons/dashboard-icon.svg" alt="dashboard"/>
                                 <span class="dashboad-menu">Dashboard</span>
@@ -71,7 +67,7 @@
                     <div class="assessment-menus">
                         <router-link class="dashboard-link" :to="{ name: 'TakeAssessment' }">
                             <img class="assessment-img" src="../assets/icons/assessment-icon.svg" alt="assement"/>
-                            <span class="assessment-menu">Assessment</span>
+                            <span class="dashboard-menu">Assessment</span>
                         </router-link>
                     </div>
 
