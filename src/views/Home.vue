@@ -1,12 +1,12 @@
 <template>
 	<div class="home">
 		<Navbar/>
-		<main class="container">
+		<main class="container px-xl-5">
 			<section class="row intro">
 				<div class="col-lg-6 col-md-6 col-sm-12 intro-text">
 					<h1 class="fw-bold intro-header">Ever had a Dream of Becoming a Software <span class="text--purple">Engineer?</span></h1>
 					<p class="fs-5 mt-4 text-secondary">Join enyata academy today and bring your long awaiting dream to reality.</p>
-					<Button btnText='Register Now' btnStyle='btn btn-lg btn-register-purple registerNav mt-4'/>
+					<router-link to="/signup"><Button btnText='Register Now' btnStyle='btn btn-lg btn-register-purple registerNav mt-4'/></router-link>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 order-first order-md-last">
 					<!-- <img src="../assets/images/Landingpage.png" class='hero-image' alt="hero-image"> -->

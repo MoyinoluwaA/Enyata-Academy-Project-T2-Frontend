@@ -37,6 +37,12 @@
             width: 379px $im;
         }
     }
+    &-login {
+        background: $purple-color;
+        border:none;
+        height: 48px;
+        color: #fff;
+        font-weight: 600;
     &--gray {
         @include button($deep-grey, $white-color);
         border: none;
@@ -57,4 +63,5 @@
         width: 125px;
         height: 41px;
     }
+}
 }
