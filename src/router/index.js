@@ -31,6 +31,11 @@ const routes = [
         component: () => import('../views/CreateApplication.vue')
     },
     {
+        path: '/reset-password',
+        name: 'ResetPasswordDone',
+        component: () => import('../views/ResetPasswordDone.vue')
+    },
+    {
 		path: '/dashboard',
         redirect: '/dashboard/home',
 		name: 'Dashboard',
@@ -56,7 +61,7 @@ const routes = [
 				name: 'AssessmentCompleted',
 				component: () => import('../views/dashboard/AssessmentCompleted.vue')
 			}
-			]
+		]
 	}
 ]
 

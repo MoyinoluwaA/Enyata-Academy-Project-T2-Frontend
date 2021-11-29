@@ -1,0 +1,13 @@
+.reset {
+    &-pw {
+        color: $primary-color;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 43px;
+        margin-top: 107px;
+    }
+
+    &-via-email {
+        cursor: pointer;
+    }
+}
