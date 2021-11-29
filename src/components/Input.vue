@@ -1,11 +1,8 @@
 <template>
-        <div class="col-md-6 col-12 form-input mb-4">
-            <label for='inputType' class="mb-2 labelForm text--labelColor">{{label}}</label>
-            <input type="type" class="form-control" id="input-box" name="identifier" />
-        </div>
-        <!-- <label for="inputType" class="labelStyle">{{label}}</label>
-        <input type="type" class="inputStyle" id="inputType" name="identifier" v-bind:value="value" v-on:input="$emit('input', $event.target.value)" >
-    </div> -->
+    <div class="col-12 form-input mb-4" :class="inputBoxStyle">
+        <label :for="identifier" class="mb-2 form-label text--gray-2" :class="labelStyle">{{label}}</label>
+        <input :type="type" class="form-control" :class="inputStyle" id="input-box" :name="identifier" />
+    </div>
 </template>
 
 <script>
@@ -14,10 +11,10 @@ export default {
     props: {
         identifier: String,
         type: String,
-        inputType: String,
         label: String,
         labelStyle: String,
-        inputStyle: String
+        inputStyle: String,
+        inputBoxStyle: String
     },
 }
 </script>

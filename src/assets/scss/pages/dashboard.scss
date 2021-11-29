@@ -69,5 +69,19 @@
             display: flex;
             flex-direction: row;
         }
+        
+        .update {
+            &-wrapper {
+                border: 1px solid #ECECF9;
+                border-radius: 4px;
+                height: 453px;
+                @include media-breakpoint-up(lg) {
+                    width: 95%;
+                }
+            }
+            &-lines {
+                margin-top: 30px;
+            }
+        }
     }
 }

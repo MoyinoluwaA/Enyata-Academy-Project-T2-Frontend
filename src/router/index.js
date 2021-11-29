@@ -21,9 +21,19 @@ const routes = [
         component: () => import('../views/SignIn.vue')
     },
     {
-        path: '/createApplication',
+        path: '/forgot-password',
+        name: 'ForgotPassword',
+        component: () => import('../views/ForgotPassword.vue')
+    },
+    {
+        path: '/create-application',
         name: 'CreateApplication',
         component: () => import('../views/CreateApplication.vue')
+    },
+    {
+        path: '/reset-password',
+        name: 'ResetPasswordDone',
+        component: () => import('../views/ResetPasswordDone.vue')
     },
     {
 		path: '/dashboard',
@@ -37,17 +47,17 @@ const routes = [
 				component: () => import('../views/dashboard/ApplicantDashboard.vue')
 			},
 			{
-				path: 'takeAssessment',
+				path: 'take-assessment',
 				name: 'TakeAssessment',
 				component: () => import('../views/dashboard/TakeAssessment.vue')
 			},
             {
-				path: 'assessmentQuestion',
+				path: 'assessment-questions',
 				name: 'AssessmentQuestions',
 				component: () => import('../views/dashboard/AssessmentQuestions.vue')
 			},
             {
-				path: 'assessmentCompleted',
+				path: 'assessment-completed',
 				name: 'AssessmentCompleted',
 				component: () => import('../views/dashboard/AssessmentCompleted.vue')
 			}

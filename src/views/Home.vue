@@ -9,11 +9,10 @@
 					<router-link to="/signup"><Button btnText='Register Now' btnStyle='btn btn-lg btn-register-purple registerNav mt-4'/></router-link>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 order-first order-md-last">
-					<!-- <img src="../assets/images/Landingpage.png" class='hero-image' alt="hero-image"> -->
 					<img src="../assets/images/Group 6.png" class="small-screenImg img-fluid" alt="">
 				</div>
 			</section>
-			<section class='row why_us '>
+			<section class='row why_us'>
 				<div class='d-flex align-items-center'>
 					<div class="line me-2"></div>
 					<h5 class="mb-0 fw-bold">Why us?</h5>

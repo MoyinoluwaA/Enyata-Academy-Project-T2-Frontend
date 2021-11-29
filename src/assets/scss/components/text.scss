@@ -1,8 +1,25 @@
 .text {
+    &--primary {
+        color: $primary-color;
+    }
     &--purple {
         color: $purple-color
     }
-    &--labelColor {
-        color: #4F4F4F;
+    &--gray {
+        color: $deep-grey;
+        &-2 {
+            color: $gray-color-2;
+        }
+        &-dark {
+            color: $grey-dark;
+        }
+    }
+
+    &-small {
+        font-size: $font-sm;
+    }
+    &-large {
+        font-size: 48px;
+        font-weight: 300;
     }
 }

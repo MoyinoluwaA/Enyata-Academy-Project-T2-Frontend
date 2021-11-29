@@ -1,8 +1,36 @@
+body {
+    font-family: Lato;
+}
+
 .home {
     font: 100% $font-stack ;
     overflow-x: hidden; 
+    .why_us {
+        margin-top: 80px;
+        @include media-breakpoint-up(xl) {
+            margin-top:120px;
+        }
+        .box div:nth-child(odd){
+            background-color: #7557D31A;
+        }
+    }
+
+    .line {
+        height: 2px;
+        width: 25px;
+        background-color: #FDC840;
+    }
+
+    .small-screenImg {
+        display: block;
+        @include media-breakpoint-up(xl) {
+            display: block;
+        }
+    }
 }
 
-body {
-    font-family: Lato;
+.signup {
+    @include media-breakpoint-up(xl) {
+        width: 70%;
+    }
 }
