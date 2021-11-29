@@ -51,7 +51,7 @@ const routes = [
 				name: 'AssessmentCompleted',
 				component: () => import('../views/dashboard/AssessmentCompleted.vue')
 			}
-			]
+		]
 	}
 ]
 
