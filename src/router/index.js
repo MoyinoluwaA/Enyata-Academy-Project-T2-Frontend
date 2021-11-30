@@ -31,6 +31,11 @@ const routes = [
         component: () => import('../views/CreateApplication.vue')
     },
     {
+        path: '/reset-password',
+        name: 'ResetPasswordDone',
+        component: () => import('../views/ResetPasswordDone.vue')
+    },
+    {
 		path: '/dashboard',
         redirect: '/dashboard/home',
 		name: 'Dashboard',
@@ -40,6 +45,11 @@ const routes = [
 				path: 'home',
 				name: 'ApplicantDashboard',
 				component: () => import('../views/dashboard/ApplicantDashboard.vue')
+			},
+            {
+				path: 'assessment-instructions',
+				name: 'AssessmentInstructions',
+				component: () => import('../views/dashboard/AssessmentInstructions.vue')
 			},
 			{
 				path: 'take-assessment',

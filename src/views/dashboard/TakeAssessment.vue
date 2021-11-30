@@ -21,7 +21,7 @@
             <img class="load-icon" src="../../assets/icons/loading-icon.svg" alt="load" />
             <p class="ms-auto me-auto text-center mt-4">We have 4 days left until the next assessment. <br/>Watch this space</p>
             
-            <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentQuestions'}">
+            <router-link class="dashboard-link ms-auto me-auto" :to="{ name: 'AssessmentInstructions'}">
                 <Button btnText="Take Assessment" btnStyle="btn btn--gray" class="mt-4 mx-auto" />
             </router-link>
         </div>
