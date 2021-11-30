@@ -46,6 +46,11 @@ const routes = [
 				name: 'ApplicantDashboard',
 				component: () => import('../views/dashboard/ApplicantDashboard.vue')
 			},
+            {
+				path: 'assessment-instructions',
+				name: 'AssessmentInstructions',
+				component: () => import('../views/dashboard/AssessmentInstructions.vue')
+			},
 			{
 				path: 'take-assessment',
 				name: 'TakeAssessment',
