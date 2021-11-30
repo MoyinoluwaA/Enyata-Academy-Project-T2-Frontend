@@ -11,14 +11,14 @@
                     type='email'
                     identifier='email'
                     label='Email Address'
-                    v-model="email"
+                    v-model="user.email"
                 />
                 <formInput
                     inputBoxStyle='col-md-6 offset-md-3'
                     type='password'
                     identifier='password'
                     label='Password'
-                    v-model="email"
+                    v-model="user.password"
                 />
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <button class="btn col-md-6 col-12 btn-login mt-3" id="submit-btn" type="submit">Sign In</button>
