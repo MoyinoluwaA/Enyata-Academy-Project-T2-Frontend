@@ -26,7 +26,7 @@
                     invalidMsg='Password should contain an uppercase, lowercase and digit'
                 />
                 <div class="d-flex flex-column justify-content-center align-items-center">
-                    <button class="btn col-md-6 col-12 btn-login mt-3" id="submit-btn" type="submit" :disabled='!isComplete'>Sign In</button>
+                    <button class="btn col-md-6 col-12 btn-login mt-3" id="submit-btn" type="submit" :disabled='isDisabled'>Sign In</button>
                     <div class="d-flex col-md-6 col-12 justify-content-between fst-italic mt-2">
                         <p class='labelForm text--primary'> Don't have an account yet? <router-link to="/signup">Sign Up</router-link></p>
                         <router-link to="/forgot-password" class="text-decoration-none"><p class='labelForm text--primary'>Forgot Password?</p></router-link>
@@ -57,8 +57,11 @@ export default {
         }
      },
     computed: {
-        isComplete () {
-            return this.user.email && this.user.password
+        isDisabled () {
+            return (
+                !this.user.email.match(this.emailRegex) ||
+                !this.user.password.match(this.passwordRegex)
+            )
         }
     }
 }

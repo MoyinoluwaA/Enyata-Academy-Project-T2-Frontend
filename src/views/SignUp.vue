@@ -70,7 +70,7 @@
                     </div> 
                     <div class="row justify-content-center">
                         <div class=" row btn col-md-6 col-sm-12 mt-3">
-                            <button class="btn btn-login" id="btn-signup" type="submit">Sign Up</button>
+                            <button class="btn btn-login" id="btn-signup" type="submit" :disabled='isDisabled'>Sign Up</button>
                             <p class='text--gray fst-italics text-center mt-2 pt-1'>Already have an account? <router-link to="/signin" class='text-decoration-none text--primary'>Sign In</router-link></p>
                         </div>
                     </div>
@@ -105,6 +105,17 @@ export default {
     },
     mounted() {
         this.isError = {...this.user}
+    },
+    computed: {
+        isDisabled() {
+            return (
+                !this.user.firstName.length > 2 ||
+                !this.user.lastName.length > 2 ||
+                !this.user.email.match(this.emailRegex) ||
+                !this.user.phoneNumber.length === 11 ||
+                !((this.user.password.match(this.passwordRegex)) && (this.user.confirmPassword === this.user.password && this.user.password.length !== 0))
+            );
+        }
     }
 }
 </script>
