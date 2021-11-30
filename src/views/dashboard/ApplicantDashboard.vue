@@ -10,11 +10,13 @@
                 <p class="application-date">Date of Application</p>
                 <h3 class="text-large">09.09.19</h3>
                 <img src="../../assets/icons/date-of-application-status.svg" alt="status" />
+                <p class="application-sub-text">4 days since applied</p>
             </div>
             <div class="application-status mt-4 mt-sm-0">
                 <p class="application-status-text">Application Status</p>
                 <h3 class="text-large">Pending</h3>
                 <img src="../../assets/icons/pending-status.svg" alt="status" />
+                <p class="application-sub-text">We will get back to you</p>
             </div>
         </div>
 
