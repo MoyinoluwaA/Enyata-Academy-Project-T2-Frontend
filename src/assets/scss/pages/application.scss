@@ -42,5 +42,13 @@
             font-style: normal;
         }
     }
+
+    &-sub-text {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        color: $primary-color;
+        margin-top: 9px;
+    }
     
 }
