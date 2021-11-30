@@ -8,7 +8,7 @@
                 <h2>Page not found!</h2>
                 <p>Sorry we can't find what you are looking for</p>
             <router-link to="/">
-                <button type="button" class="btn btn-register-purple">Try Again</button>
+                <button type="button" class="btn btn-register-purple">Go to Home</button>
             </router-link>
             </div>
         </div>

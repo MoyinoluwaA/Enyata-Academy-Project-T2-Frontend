@@ -2,7 +2,9 @@
 <template>
     <section class='signup container'>
         <div class="form-container-head pt-3 text-center">
-            <img src="../assets/images/enyataLogo.png" alt="enyata-logo" class="enyata-logo" />
+            <router-link :to="{ name: 'Home' }">
+                <img src="../assets/images/enyataLogo.png" alt="enyata-logo" class="enyata-logo" />
+            </router-link>
             <h4 class="text-center fst-italic mt-4 mb-4 pb-3 text--primary">Application Sign Up</h4>
         </div>
         <div>
@@ -44,7 +46,9 @@
                             identifier='email'
                             label='Email Address'
                             v-model.lazy.trim="user.email"
-                            @input="user.email.match(emailRegex) ? isError.email = 'is-valid' : isError.email = 'is-invalid'"
+                            @input="user.email.match(emailRegex) 
+                                ? isError.email = 'is-valid' 
+                                : isError.email = 'is-invalid'"
                             invalidMsg='Enter a valid email address'
                         />
                         <formInput
@@ -54,7 +58,9 @@
                             identifier='phoneNumber'
                             label='Phone Number'
                             v-model.lazy.trim="user.phoneNumber"
-                            @input="user.phoneNumber.length === 11 ? isError.phoneNumber = 'is-valid' : isError.phoneNumber = 'is-invalid'"
+                            @input="user.phoneNumber.length === 11 
+                                ? isError.phoneNumber = 'is-valid' 
+                                : isError.phoneNumber = 'is-invalid'"
                             invalidMsg='Phone number should be 11'
                         />  
                         <formInput
@@ -64,7 +70,9 @@
                             identifier='password'
                             label='Password'
                             v-model.lazy.trim="user.password"
-                            @input="user.password.match(passwordRegex) ? isError.password = 'is-valid' : isError.password = 'is-invalid'"
+                            @input="user.password.match(passwordRegex) 
+                                ? isError.password = 'is-valid' 
+                                : isError.password = 'is-invalid'"
                             invalidMsg='Password should contain an uppercase, lowercase and digit'
                         />   
                         <formInput
@@ -74,14 +82,21 @@
                             identifier='confirmPassword'
                             label='Confirm Password'
                             v-model.lazy.trim="user.confirmPassword"
-                            @input="user.confirmPassword === user.password && user.password.length !== 0 ? isError.confirmPassword = 'is-valid' : isError.confirmPassword = 'is-invalid'"
+                            @input="user.confirmPassword === user.password && user.password.length !== 0 
+                                ? isError.confirmPassword = 'is-valid' 
+                                : isError.confirmPassword = 'is-invalid'"
                             invalidMsg='Password do not match'
                         />
                     </div> 
                     <div class="row justify-content-center">
                         <div class=" row btn col-md-6 col-sm-12 mt-3">
                             <button class="btn btn-login" id="btn-signup" type="submit" :disabled='isDisabled'>Sign Up</button>
-                            <p class='text--gray fst-italics text-center mt-2 pt-1'>Already have an account? <router-link to="/signin" class='text-decoration-none text--primary'>Sign In</router-link></p>
+                            <p class='text--gray fst-italics text-center mt-2 pt-1'>
+                                Already have an account? 
+                                <router-link to="/signin" class='text-decoration-none text--primary'>
+                                    Sign In
+                                </router-link>
+                            </p>
                         </div>
                     </div>
                 </div>

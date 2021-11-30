@@ -1,7 +1,9 @@
 <template>
     <nav class='nav-bar navbar navbar-expand-md flex-row'>
         <div class='container mt-4 pt-2 px-xl-5'>
-            <img src="../assets/images/enyataLogo.png" class="img-fluid pt-4" alt="enyataLogo">
+            <router-link :to="{ name: 'Home' }">
+                <img src="../assets/images/enyataLogo.png" class="img-fluid pt-4" alt="enyataLogo">
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars fs-4 navbar-toggler-icon"></i>
             </button>

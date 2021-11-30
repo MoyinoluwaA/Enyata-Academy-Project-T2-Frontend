@@ -27,7 +27,7 @@ export default {
         }
     },
     mounted() {
-        // const { resetToken } = this.$route.query
+        // const { verifyToken } = this.$route.query
         try {
             // api call
         }
