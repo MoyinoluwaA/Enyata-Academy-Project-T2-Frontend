@@ -69,9 +69,9 @@ const routes = [
 			]
 	},
     {
-        path: '/user-not-found',
-        name: 'UserNotFound',
-        component: () => import('../views/UserNotFound.vue')
+        path: '*',
+        name: 'PageNotFound',
+        component: () => import('../views/PageNotFound.vue')
     }
 ]
 
