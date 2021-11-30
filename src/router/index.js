@@ -57,7 +57,12 @@ const routes = [
 				component: () => import('../views/dashboard/AssessmentCompleted.vue')
 			}
 			]
-	}
+	},
+    {
+        path: '/user-not-found',
+        name: 'UserNotFound',
+        component: () => import('../views/UserNotFound.vue')
+    }
 ]
 
 const router = new VueRouter({
