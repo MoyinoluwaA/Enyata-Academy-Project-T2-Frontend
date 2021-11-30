@@ -16,6 +16,11 @@ const routes = [
         component: () => import('../views/SignUp.vue')
     },
     {
+        path: '/verify',
+        name: 'VerifyUser',
+        component: () => import('../views/VerifyUser.vue')
+    },
+    {
         path: '/signin',
         name: 'SignIn',
         component: () => import('../views/SignIn.vue')
@@ -26,20 +31,20 @@ const routes = [
         component: () => import('../views/ForgotPassword.vue')
     },
     {
+        path: '/reset-password',
+        name: 'ResetPassword',
+        component: () => import('../views/ResetPassword.vue')
+    },
+    {
         path: '/create-application',
         name: 'CreateApplication',
         component: () => import('../views/CreateApplication.vue')
     },
     {
-        path: '/reset-password',
-        name: 'ResetPasswordDone',
-        component: () => import('../views/ResetPasswordDone.vue')
-    },
-    {
 		path: '/dashboard',
         redirect: '/dashboard/home',
 		name: 'Dashboard',
-		component: () => import(/* webpackChunkName: "about" */ '../views/dashboard/index.vue'),
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue'),
 		children: [
 			{
 				path: 'home',
