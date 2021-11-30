@@ -39,6 +39,7 @@
 
 <script>
 import formInput from '@/components/Input.vue'
+import { emailRegex, passwordRegex } from '@/helpers/variables'
 
 export default {
     name: 'SignIn',
@@ -52,15 +53,16 @@ export default {
                 password: '',
             },
             isError: {},
-            emailRegex: /\b[\w-]+@[\w-]+\.\w{2,4}\b/gi,
-            passwordRegex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+            emailRegex,
+            passwordRegex
         }
      },
     computed: {
         isDisabled () {
             return (
-                !this.user.email.match(this.emailRegex) ||
-                !this.user.password.match(this.passwordRegex)
+                (!(this.user.email && this.user.password)) ||
+                this.isError.email === 'is-invalid' ||
+                this.isError.password === 'is-invalid'
             )
         }
     }

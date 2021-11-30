@@ -16,7 +16,12 @@
                             identifier='firstName'
                             label='First Name'
                             v-model.lazy.trim="user.firstName"
-                            @input="user.firstName.length > 2 ? isError.firstName = 'is-valid' : isError.firstName = 'is-invalid'"
+                            @input="user.firstName.length > 2 && user.firstName.match(lettersRegex)  
+                                ? isError.firstName = 'is-valid' 
+                                : isError.firstName = 'is-invalid'"
+                            :invalidMsg="!user.firstName.match(lettersRegex)
+                                ? 'Name should not have number' 
+                                : 'Name must be more than 2 characters'"
                         />   
                         <formInput
                             inputBoxStyle='col-md-6'
@@ -25,7 +30,12 @@
                             identifier='lastName'
                             label='Last Name'
                             v-model.lazy.trim="user.lastName"
-                            @input="user.lastName.length > 2 ? isError.lastName = 'is-valid' : isError.lastName = 'is-invalid'"
+                            @input="user.lastName.length > 2 && user.lastName.match(lettersRegex)  
+                                ? isError.lastName = 'is-valid' 
+                                : isError.lastName = 'is-invalid'"
+                            :invalidMsg="!user.lastName.match(lettersRegex)
+                                ? 'Name should not have number' 
+                                : 'Name must be more than 2 characters'"
                         /> 
                         <formInput
                             inputBoxStyle='col-md-6'
@@ -82,6 +92,7 @@
 
 <script>
 import formInput from "@/components/Input.vue"
+import { emailRegex, passwordRegex, lettersRegex } from '@/helpers/variables'
 
 export default {
     name: 'SignUp',
@@ -99,8 +110,9 @@ export default {
                 confirmPassword: ''
             },
             isError: {},
-            emailRegex: /\b[\w-]+@[\w-]+\.\w{2,4}\b/gi,
-            passwordRegex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+            emailRegex,
+            passwordRegex,
+            lettersRegex
         }
     },
     mounted() {
@@ -109,11 +121,14 @@ export default {
     computed: {
         isDisabled() {
             return (
-                !this.user.firstName.length > 2 ||
-                !this.user.lastName.length > 2 ||
-                !this.user.email.match(this.emailRegex) ||
-                !this.user.phoneNumber.length === 11 ||
-                !((this.user.password.match(this.passwordRegex)) && (this.user.confirmPassword === this.user.password && this.user.password.length !== 0))
+                (!(this.user.firstName && this.user.lastName && this.user.email && 
+                this.user.phoneNumber && this.user.password && this.user.confirmPassword)) ||
+                this.isError.firstName === 'is-invalid' ||
+                this.isError.lastName === 'is-invalid' ||
+                this.isError.email === 'is-invalid' ||
+                this.isError.phoneNumber === 'is-invalid' ||
+                this.isError.password === 'is-invalid' ||
+                this.isError.confirmPassword === 'is-invalid'
             );
         }
     }
