@@ -97,4 +97,14 @@
             width: 72px;
         }
     }
+
+    &-instruction {
+        
+        &-wrapper {
+            border: 1px solid $grey-color;
+            border-radius: 4px;
+            padding: 20px;
+        }
+    }
+
 }

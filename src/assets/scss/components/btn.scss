@@ -71,7 +71,9 @@
         height: 41px;
         margin-top: 34px;
     }
-    // &-sendLink {
-    //     width:fit-content;
-    // }
+
+    &-start {
+        @include button($purple-color, $white-color);
+        padding: 10px 40px 10px 40px;
+    }
 }
