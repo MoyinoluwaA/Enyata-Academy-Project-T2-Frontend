@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getAuthUser, setAuthUser, removeUser } from '../services/auth'
+import AuthService from '../services/auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		user: getAuthUser || null
+		user: AuthService.getAuthUser || null
 	},
 	getters: {
 		getUser: (state) => state.user
@@ -18,12 +18,12 @@ export default new Vuex.Store({
 		handleLogIn({ commit }, loggedInUser) {
 			if (loggedInUser) {
 				commit('setUser', loggedInUser)
-				setAuthUser(loggedInUser)
+				AuthService.setAuthUser(loggedInUser)
 			}
 		},
 		handleLogOut({ commit }) {
 			commit('setUser', null)
-			removeUser()
+			AuthService.removeUser()
 		}
 	},
 	modules: {
