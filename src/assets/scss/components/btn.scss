@@ -38,6 +38,7 @@
         }
     }
     &-login {
+        @include button($purple-color, $white-color, $gray-color);
         background: $purple-color;
         border:none;
         height: 48px;

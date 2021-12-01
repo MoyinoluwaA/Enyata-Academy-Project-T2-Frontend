@@ -8,34 +8,34 @@
             <h4 class="text-center fst-italic mt-4 mb-4 pb-3 text--primary">Application Sign Up</h4>
         </div>
         <div>
-            <form class="action">
+            <form class="action" @submit.prevent="registerUser">
                 <div class="row justify-content-center">
                     <div class="row gx-md-5">
                         <formInput
                             inputBoxStyle='col-md-6'
-                            :inputStyle="isError.firstName"
+                            :inputStyle="isError.first_name"
                             type='text'
                             identifier='firstName'
                             label='First Name'
-                            v-model.lazy.trim="user.firstName"
-                            @input="user.firstName.length > 2 && user.firstName.match(lettersRegex)  
-                                ? isError.firstName = 'is-valid' 
-                                : isError.firstName = 'is-invalid'"
-                            :invalidMsg="!user.firstName.match(lettersRegex)
+                            v-model.lazy.trim="user.first_name"
+                            @input="user.first_name.length > 2 && user.first_name.match(lettersRegex)  
+                                ? isError.first_name = 'is-valid' 
+                                : isError.first_name = 'is-invalid'"
+                            :invalidMsg="!user.first_name.match(lettersRegex)
                                 ? 'Name should not have number' 
                                 : 'Name must be more than 2 characters'"
                         />   
                         <formInput
                             inputBoxStyle='col-md-6'
-                            :inputStyle="isError.lastName"
+                            :inputStyle="isError.last_name"
                             type='text'
                             identifier='lastName'
                             label='Last Name'
-                            v-model.lazy.trim="user.lastName"
-                            @input="user.lastName.length > 2 && user.lastName.match(lettersRegex)  
-                                ? isError.lastName = 'is-valid' 
-                                : isError.lastName = 'is-invalid'"
-                            :invalidMsg="!user.lastName.match(lettersRegex)
+                            v-model.lazy.trim="user.last_name"
+                            @input="user.last_name.length > 2 && user.last_name.match(lettersRegex)  
+                                ? isError.last_name = 'is-valid' 
+                                : isError.last_name = 'is-invalid'"
+                            :invalidMsg="!user.last_name.match(lettersRegex)
                                 ? 'Name should not have number' 
                                 : 'Name must be more than 2 characters'"
                         /> 
@@ -53,14 +53,14 @@
                         />
                         <formInput
                             inputBoxStyle='col-md-6'
-                            :inputStyle="isError.phoneNumber"
-                            type='number'
+                            :inputStyle="isError.phone_number"
+                            type='tel'
                             identifier='phoneNumber'
                             label='Phone Number'
-                            v-model.lazy.trim="user.phoneNumber"
-                            @input="user.phoneNumber.length === 11 
-                                ? isError.phoneNumber = 'is-valid' 
-                                : isError.phoneNumber = 'is-invalid'"
+                            v-model.lazy.trim="user.phone_number"
+                            @input="user.phone_number.length === 11 
+                                ? isError.phone_number = 'is-valid' 
+                                : isError.phone_number = 'is-invalid'"
                             invalidMsg='Phone number should be 11'
                         />  
                         <formInput
@@ -77,14 +77,14 @@
                         />   
                         <formInput
                             inputBoxStyle='col-md-6'
-                            :inputStyle="isError.confirmPassword"
+                            :inputStyle="isError.confirm_password"
                             type='password'
                             identifier='confirmPassword'
                             label='Confirm Password'
-                            v-model.lazy.trim="user.confirmPassword"
-                            @input="user.confirmPassword === user.password && user.password.length !== 0 
-                                ? isError.confirmPassword = 'is-valid' 
-                                : isError.confirmPassword = 'is-invalid'"
+                            v-model.lazy.trim="user.confirm_password"
+                            @input="user.confirm_password === user.password && user.password.length !== 0 
+                                ? isError.confirm_password = 'is-valid' 
+                                : isError.confirm_password = 'is-invalid'"
                             invalidMsg='Password do not match'
                         />
                     </div> 
@@ -108,6 +108,7 @@
 <script>
 import formInput from "@/components/Input.vue"
 import { emailRegex, passwordRegex, lettersRegex } from '@/helpers/variables'
+import AuthService from '@/services/auth'
 
 export default {
     name: 'SignUp',
@@ -117,12 +118,12 @@ export default {
     data() {
         return {
             user: {
-                firstName: '',
-                lastName: '',
+                first_name: '',
+                last_name: '',
                 email: '',
-                phoneNumber: '',
+                phone_number: '',
                 password: '',
-                confirmPassword: ''
+                confirm_password: ''
             },
             isError: {},
             emailRegex,
@@ -133,17 +134,55 @@ export default {
     mounted() {
         this.isError = {...this.user}
     },
+    methods: {
+        async registerUser() {
+            try {
+                // eslint-disable-next-line no-unused-vars
+                const {confirm_password, phone_number, ...newUser} = this.user
+                const phone = phone_number
+                const res = await AuthService.createUser({...newUser, phone})
+
+                if (res.code === 201) {
+                    this.$dtoast.pop({
+                        preset: "success",
+                        heading: "Account Created Successfully.",
+                        content: "Kindly check your email to verify your account",
+                    })
+                    this.clearForms()
+                }
+            } catch (error) {
+                if(error.response.status === 400) {
+                    this.$dtoast.pop({
+                        preset: "error",
+                        heading: "Account Already Exist.",
+                        content: "Kindly proceed to login",
+                    })
+                }
+            }
+        },
+        clearForms() {
+            return (
+                this.user.first_name = '',
+                this.user.last_name = '',
+                this.user.email = '',
+                this.user.phone_number = '',
+                this.user.password = '',
+                this.user.confirm_password = '',
+                this.isError = {}
+            )
+        }
+    },
     computed: {
         isDisabled() {
             return (
-                (!(this.user.firstName && this.user.lastName && this.user.email && 
-                this.user.phoneNumber && this.user.password && this.user.confirmPassword)) ||
-                this.isError.firstName === 'is-invalid' ||
-                this.isError.lastName === 'is-invalid' ||
+                (!(this.user.first_name && this.user.last_name && this.user.email && 
+                this.user.phone_number && this.user.password && this.user.confirm_password)) ||
+                this.isError.first_name === 'is-invalid' ||
+                this.isError.last_name === 'is-invalid' ||
                 this.isError.email === 'is-invalid' ||
-                this.isError.phoneNumber === 'is-invalid' ||
+                this.isError.phone_number === 'is-invalid' ||
                 this.isError.password === 'is-invalid' ||
-                this.isError.confirmPassword === 'is-invalid'
+                this.isError.confirm_password === 'is-invalid'
             );
         }
     }
