@@ -148,19 +148,20 @@ export default {
                         heading: "Account Created Successfully.",
                         content: "Kindly check your email to verify your account",
                     })
-                    this.clearForms()
+                    this.clearForm()
                 }
             } catch (error) {
-                if(error.response.status === 400) {
+                if (error.response.status === 400) {
                     this.$dtoast.pop({
                         preset: "error",
                         heading: "Account Already Exist.",
                         content: "Kindly proceed to login",
                     })
                 }
+                this.clearForm()
             }
         },
-        clearForms() {
+        clearForm() {
             return (
                 this.user.first_name = '',
                 this.user.last_name = '',
