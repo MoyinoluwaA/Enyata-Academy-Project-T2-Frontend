@@ -1,18 +1,24 @@
 import Cookies from 'js-cookie'
-import { authenticatedUser } from '../helpers/variables'
+import { token } from '../helpers/variables'
 
 const TokenService = () => {
     const getToken = () => {
-        if (Cookies.get(authenticatedUser)) {
-            const user = JSON.parse(Cookies.get(authenticatedUser))
-            return user.token
-        }
-        return false
+        Cookies.get(token)
+    }
+
+    const setToken = (userToken) => {
+        Cookies.set(token, JSON.stringify(userToken))
+    }
+
+    const removeToken = () => {
+        Cookies.remove(token)
     }
 
     return {
-        getToken
+        getToken,
+        setToken,
+        removeToken
     }
-} 
+}
 
 export default TokenService()

@@ -7,7 +7,7 @@
                 </router-link>
                 <h4 class="text-center fst-italic mt-4 mb-4 pb-3 text--primary">Application Login</h4>
             </div>
-            <form class="action">
+            <form class="action" @submit.prevent="signIn()">
                 <formInput
                     inputBoxStyle='col-md-6 offset-md-3'
                     :inputStyle="isError.email"
@@ -47,6 +47,8 @@
 <script>
 import formInput from '@/components/Input.vue'
 import { emailRegex, passwordRegex } from '@/helpers/variables'
+import AuthService from '@/services/auth'
+import { mapActions } from 'vuex'
 
 export default {
     name: 'SignIn',
@@ -70,6 +72,40 @@ export default {
                 (!(this.user.email && this.user.password)) ||
                 this.isError.email === 'is-invalid' ||
                 this.isError.password === 'is-invalid'
+            )
+        }
+    },
+    methods: {
+        ...mapActions(['handleLogIn']), 
+        async signIn() {
+            try {
+                const res = await AuthService.loginUser({...this.user})
+                if (res.code === 200) {
+                    this.handleLogIn(res.data.token)
+                    this.$router.push({ name: 'CreateApplication' })
+                }
+                this.clearForm()
+            } catch (error) {
+                let content
+
+                if (error.response.data.message === 'Invalid credentials') {
+                    content = 'Invalid Credentials'
+                } else {
+                    content = 'User not verified'
+                }
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: 'Error occured while logging in',
+                    content
+                })
+                this.clearForm()
+            }
+        },
+        clearForm() {
+            return (
+                this.user.email = '',
+                this.user.password = '',
+                this.isError = {}
             )
         }
     }
