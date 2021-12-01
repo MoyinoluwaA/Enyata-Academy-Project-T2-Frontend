@@ -43,6 +43,9 @@
         height: 48px;
         color: #fff;
         font-weight: 600;
+        &:hover {
+            color: rgb(241, 241, 241)
+        }
     }
     &--gray {
         @include button($deep-grey, $white-color);

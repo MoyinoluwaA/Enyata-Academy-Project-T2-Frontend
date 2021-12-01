@@ -25,6 +25,7 @@ export default new Vuex.Store({
 			commit('setUser', null)
 			AuthService.removeUser()
 		}
+
 	},
 	modules: {
 	}

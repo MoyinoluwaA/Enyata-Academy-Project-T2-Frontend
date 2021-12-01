@@ -1,0 +1,23 @@
+[
+    {
+        "name" : "success",
+        "duration" : "5000",
+        "background" : "#5cb85c",
+        "height" : "75px",
+        "color" : "#FFFFFF",
+        "show_progress_timeout" : "true",
+        "progress_background" : "#ffc107",
+        "progress_thumb_bg" : "#5cb85c"
+    },
+
+    {
+        "name" : "error",
+        "duration" : "3000",
+        "background" : "#ff1e1e",
+        "height" : "75px",
+        "color" : "#FFFFFF",
+        "show_progress_timeout" : "true",
+        "progress_background" : "rgb(255 175 175)",
+        "progress_thumb_bg" : "#ff1e1e"
+    }
+]
