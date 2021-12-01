@@ -3,7 +3,7 @@ import { token } from '../helpers/variables'
 
 const TokenService = () => {
     const getToken = () => {
-        Cookies.get(token)
+        return JSON.parse(Cookies.get(token))
     }
 
     const setToken = (userToken) => {
