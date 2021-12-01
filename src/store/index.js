@@ -1,29 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import AuthService from '../services/auth'
+import TokenService from '../services/token'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		user: AuthService.getAuthUser || null
+		token: TokenService.getToken || null
 	},
 	getters: {
-		getUser: (state) => state.user
+		getToken: (state) => state.token
 	},
 	mutations: {
-		setUser: (state, payload) => state.user = payload,
+		setToken: (state, payload) => state.token = payload,
 	},
 	actions: {
-		handleLogIn({ commit }, loggedInUser) {
-			if (loggedInUser) {
-				commit('setUser', loggedInUser)
-				AuthService.setAuthUser(loggedInUser)
+		handleLogIn({ commit }, token) {
+			if (token) {
+				commit('setToken', token)
+				TokenService.setToken(token)
 			}
 		},
 		handleLogOut({ commit }) {
-			commit('setUser', null)
-			AuthService.removeUser()
+			commit('setToken', null)
+			TokenService.removeToken()
 		}
 
 	},

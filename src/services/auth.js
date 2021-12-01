@@ -1,6 +1,5 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
-import { authenticatedUser, baseUrl } from '../helpers/variables'
+import { baseUrl } from '../helpers/variables'
 
 const AuthService = () => {
     const createUser  =  async userDetails => {
@@ -13,24 +12,15 @@ const AuthService = () => {
         return response.data
     }
 
-    const getAuthUser = () => {
-        Cookies.get(authenticatedUser)
-    }
-
-    const setAuthUser = (user) => {
-        Cookies.set(authenticatedUser, JSON.stringify(user))
-    }
-
-    const removeUser = () => {
-        Cookies.remove(authenticatedUser)
+    const loginUser = async user => {
+        const response = await axios.post(`${ baseUrl }/users/login`, user)
+        return response.data
     }
 
     return {
         createUser,
         verifyUser,
-        getAuthUser,
-        setAuthUser,
-        removeUser
+        loginUser
     }
 }
 
