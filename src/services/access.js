@@ -1,5 +1,5 @@
 import axios from 'axios'
-import TokenService from './site/TokenService'
+import TokenService from './token'
 import { baseUrl } from '../helpers/variables'
 
 const instance = axios.create({
@@ -26,7 +26,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (res) => {
-        return res
+        return res.data
     },
     (err) => {
         return Promise.reject(err)

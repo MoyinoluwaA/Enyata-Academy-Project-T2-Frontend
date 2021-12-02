@@ -48,6 +48,7 @@
 import formInput from '@/components/Input.vue'
 import { emailRegex, passwordRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
+import ApplicationService from '@/services/application'
 import { mapActions } from 'vuex'
 
 export default {
@@ -82,22 +83,33 @@ export default {
                 const res = await AuthService.loginUser({...this.user})
                 if (res.code === 200) {
                     this.handleLogIn(res.data.token)
-                    this.$router.push({ name: 'CreateApplication' })
+
+                    const status = await ApplicationService.getUserStatus()
+
+                    if (status.data.isApplicant === true) {
+                        this.$router.push({ name: 'Dashboard' })
+                    } else {
+                        this.$router.push({ name: 'CreateApplication' })
+                    }
+                    console.log(status)
                 }
                 this.clearForm()
             } catch (error) {
-                let content
-
-                if (error.response.data.message === 'Invalid credentials') {
-                    content = 'Invalid Credentials'
-                } else {
-                    content = 'User not verified'
+                if (error.response.data.code === 401) {
+                    let content
+                    if (error.response.data.message === 'Invalid credentials') {
+                        content = 'Invalid Credentials'
+                    } else {
+                        content = 'User not verified'
+                    }
+                    this.$dtoast.pop({
+                        preset: "error",
+                        heading: 'Error occured while logging in',
+                        content
+                    })
+                } else if (error.response.data.code === 404) {
+                     this.$router.push({ name: 'NoApplication' })
                 }
-                this.$dtoast.pop({
-                    preset: "error",
-                    heading: 'Error occured while logging in',
-                    content
-                })
                 this.clearForm()
             }
         },

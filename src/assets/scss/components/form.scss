@@ -27,9 +27,18 @@
     }
 }
 
-.input-date {
-    color: $grey-color;
-    font-size: 10px;
+.input {
+    &-date {
+        color: $grey-color;
+        font-size: 10px;
+    }
+    &-file {
+        opacity: 0;
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        cursor: pointer;
+    }
 }
 
 .invalid-feedback {

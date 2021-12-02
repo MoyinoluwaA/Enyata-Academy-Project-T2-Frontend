@@ -6,10 +6,17 @@
                 <p class="text-center fst-italic mt-4 mb-4 pb-3">Application Form</p>
             </div>
 
-            <form class="application-form-details">
+            <form class="application-form-details" enctype="multipart/form-data">
                 <div class="text-center">
-                    <button class="btn-upload"> + Upload CV</button>
-                    <button class="btn-upload ms-sm-4 mt-4 mt-sm-0"> + Upload Photo</button>
+                    <div class="btn-upload mx-auto d-md-inline"> 
+                        + Upload CV
+                    </div>
+                    <div class="btn-upload ms-md-4 mt-4 d-md-inline mt-md-0 mx-auto">
+                        <input type="file" :name="uploadFieldName" :disabled="isSaving" accept="image/*" class="input-file"
+                            @change="filesChange($event.target.name, $event.target.files)"
+                        > 
+                        + Upload Photo
+                    </div>
                 </div>
 
                 <div class="row">
