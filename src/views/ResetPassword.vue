@@ -9,7 +9,7 @@
             </div>
 
             <form class="action" @submit.prevent="resetPassword()">
-                <formInput
+                <formInputPassword
                     inputBoxStyle='col-md-6 offset-md-3'
                     :inputStyle="isError.password"
                     identifier='password'
@@ -21,7 +21,7 @@
                     invalidMsg='Password should contain an uppercase, lowercase, digit with minimum of 8 characters'
                 />
 
-                <formInput
+                <formInputPassword
                     inputBoxStyle='col-md-6 offset-md-3'
                     :inputStyle="isError.confirm_password"
                     identifier='confirmPassword'
@@ -46,13 +46,15 @@
 
 <script>
 import formInput from '@/components/InputPassword.vue'
+import formInputPassword from '@/components/InputPassword.vue'
 import { passwordRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
 
 export default {
     name: 'VerifyUser',
     components: {
-        formInput
+        formInput,
+        formInputPassword
     },
     data() {
         return {
