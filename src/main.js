@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import 'dtoaster/dist/dtoaster.css'
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import './styles.scss'
 

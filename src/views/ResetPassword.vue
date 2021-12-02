@@ -8,11 +8,10 @@
                 <h4 class="text-center fst-italic mt-4 mb-4 pb-3 text--primary">Password Reset</h4>
             </div>
 
-            <form class="action">
+            <form class="action" @submit.prevent="resetPassword()">
                 <formInput
                     inputBoxStyle='col-md-6 offset-md-3'
                     :inputStyle="isError.password"
-                    type='password'
                     identifier='password'
                     label='Enter New Password'
                     v-model.lazy.trim="user.password"
@@ -24,14 +23,13 @@
 
                 <formInput
                     inputBoxStyle='col-md-6 offset-md-3'
-                    :inputStyle="isError.confirmPassword"
-                    type='password'
+                    :inputStyle="isError.confirm_password"
                     identifier='confirmPassword'
                     label='Confirm Password'
-                    v-model.lazy.trim="user.confirmPassword"
-                    @input="user.confirmPassword === user.password && user.password.length !== 0 
-                        ? isError.confirmPassword = 'is-valid' 
-                        : isError.confirmPassword = 'is-invalid'"
+                    v-model.lazy.trim="user.confirm_password"
+                    @input="user.confirm_password === user.password && user.password.length !== 0 
+                        ? isError.confirm_password = 'is-valid' 
+                        : isError.confirm_password = 'is-invalid'"
                     invalidMsg='Password do not match'
                 />
 
@@ -40,14 +38,16 @@
                         Reset Password
                     </button>
                 </div>
+                
             </form>
         </div>
     </section>
 </template>
 
 <script>
-import formInput from '@/components/Input.vue'
+import formInput from '@/components/InputPassword.vue'
 import { passwordRegex } from '@/helpers/variables'
+import AuthService from '@/services/auth'
 
 export default {
     name: 'VerifyUser',
@@ -58,28 +58,51 @@ export default {
         return {
             user: {
                 password: '',
-                confirmPassword: ''
+                confirm_password: ''
             },
             isError: {},
             passwordRegex
         }
     },
-    mounted() {
+    async mounted() {
         this.isError = {...this.user}
-        // const { resetToken } = this.$route.query
-        try {
-            // api call
-        }
-        catch (err) {
-            console.log(err)
+    },
+    methods: {
+        async resetPassword() {
+            try {
+                const { resetToken } = this.$route.query
+                // eslint-disable-next-line no-unused-vars
+                const {confirm_password, ...newPassword} = this.user
+                const res = await AuthService.resetPassword(resetToken, {...newPassword})
+                if (res.code === 200) {
+                    this.$router.push({ name: 'ResetPasswordDone' })
+                    this.clearField()
+                }
+            } catch (error) {
+                if (error.response.status === 400) {
+                    this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Error",
+                    content: "Error occured while reseting password, kindly check again",
+                })
+                this.clearField()
+                }
+            }
+        },
+        clearField() {
+            return (
+                this.user.password = '',
+                this.user.confirm_password = '',
+                this.isError = {}
+            )
         }
     },
     computed: {
         isDisabled () {
             return (
-                (!(this.user.password && this.user.confirmPassword)) ||
+                (!(this.user.password && this.user.confirm_password)) ||
                 this.isError.password === 'is-invalid' ||
-                this.isError.confirmPassword === 'is-invalid'
+                this.isError.confirm_password === 'is-invalid'
             )
         }
     }

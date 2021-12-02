@@ -10,4 +10,17 @@
     &-via-email {
         cursor: pointer;
     }
+
+    &-options-password {
+        opacity: 0.2;
+    }
+    
+    &-email-password {
+        &:hover {
+            background: rgb(241, 241, 241);
+        }
+        &-link {
+            text-decoration: none;
+        }
+    }
 }

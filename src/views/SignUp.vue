@@ -63,7 +63,7 @@
                                 : isError.phone_number = 'is-invalid'"
                             invalidMsg='Phone number should be 11'
                         />  
-                        <formInput
+                        <formInputPassword
                             inputBoxStyle='col-md-6'
                             :inputStyle="isError.password"
                             type='password'
@@ -75,7 +75,7 @@
                                 : isError.password = 'is-invalid'"
                             invalidMsg='Password should contain an uppercase, lowercase and digit'
                         />   
-                        <formInput
+                        <formInputPassword
                             inputBoxStyle='col-md-6'
                             :inputStyle="isError.confirm_password"
                             type='password'
@@ -107,6 +107,7 @@
 
 <script>
 import formInput from "@/components/Input.vue"
+import formInputPassword from '@/components/InputPassword.vue'
 import { emailRegex, passwordRegex, lettersRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
 
@@ -114,6 +115,7 @@ export default {
     name: 'SignUp',
 	components: {
             formInput,
+            formInputPassword
 	},
     data() {
         return {
