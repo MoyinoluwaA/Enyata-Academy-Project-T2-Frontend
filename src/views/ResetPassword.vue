@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import formInput from '@/components/InputPassword.vue'
 import formInputPassword from '@/components/InputPassword.vue'
 import { passwordRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
@@ -53,7 +52,6 @@ import AuthService from '@/services/auth'
 export default {
     name: 'VerifyUser',
     components: {
-        formInput,
         formInputPassword
     },
     data() {
@@ -73,9 +71,8 @@ export default {
         async resetPassword() {
             try {
                 const { resetToken } = this.$route.query
-                // eslint-disable-next-line no-unused-vars
-                const {confirm_password, ...newPassword} = this.user
-                const res = await AuthService.resetPassword(resetToken, {...newPassword})
+                const { password } = this.user
+                const res = await AuthService.resetPassword(resetToken, { password })
                 if (res.code === 200) {
                     this.$router.push({ name: 'ResetPasswordDone' })
                     this.clearField()
