@@ -28,9 +28,12 @@
                     </button>
                     <div class='text-small text-center text--gray mt-4'>
                         Didn’t receive link?
-                        <router-link to='/' class='text-decoration-none text--purple'>
+                        <span data-toggle="tooltip" data-trigger="click" :title="!isDisabled && 'Resend link'"
+                            @click="!isDisabled && sendLink()"
+                            :class='!isDisabled && "pointer-cursor text--purple"'
+                        >
                             Resend
-                        </router-link>
+                        </span>
                     </div>
                 </div>
             </form>
