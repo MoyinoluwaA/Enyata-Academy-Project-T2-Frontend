@@ -71,9 +71,8 @@ export default {
         async resetPassword() {
             try {
                 const { resetToken } = this.$route.query
-                // eslint-disable-next-line no-unused-vars
-                const {confirm_password, ...newPassword} = this.user
-                const res = await AuthService.resetPassword(resetToken, {...newPassword})
+                const { password } = this.user
+                const res = await AuthService.resetPassword(resetToken, { password })
                 if (res.code === 200) {
                     this.$router.push({ name: 'ResetPasswordDone' })
                     this.clearField()
