@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import formInput from '@/components/InputPassword.vue'
 import formInputPassword from '@/components/InputPassword.vue'
 import { passwordRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
@@ -53,7 +52,6 @@ import AuthService from '@/services/auth'
 export default {
     name: 'VerifyUser',
     components: {
-        formInput,
         formInputPassword
     },
     data() {
