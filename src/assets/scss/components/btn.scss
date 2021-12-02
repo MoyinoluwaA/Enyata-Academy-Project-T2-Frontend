@@ -20,11 +20,20 @@
     }
 
     &-upload {
-        border: 1.5px solid $primary-color;
-        border-style: dashed;
+        border: 1.5px dashed $primary-color;
         padding: 16px 20px 12px;
         width: 211px;
         background: none;
+        position: relative;
+        cursor: pointer;
+        &:hover {
+            background: lightblue;
+        }
+        p {
+            font-size: 1.2em;
+            text-align: center;
+            padding: 50px 0;
+        }
     }
     &-submit {
         @include button($purple-color, $white-color);

@@ -5,8 +5,8 @@
                 <img src='../assets/images/Error404NotFound.png' class="img-fluid" alt="Error404">
             </div>
             <div class="col-12 ">
-                <h2>Page not found!</h2>
-                <p>Sorry we can't find what you are looking for</p>
+                <h2>No application Ongoing Now!</h2>
+                <p>Please check back for when an application is ongoing</p>
             <router-link to="/">
                 <button type="button" class="btn btn-register-purple">Go to Home</button>
             </router-link>
