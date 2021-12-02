@@ -17,10 +17,23 @@ const AuthService = () => {
         return response.data
     }
 
+    const forgotPassword = async email => {
+        const response = await axios.post(`${ baseUrl }/users/forgot_password`, email)
+        return response.data
+    }
+
+    const resetPassword = async (resetToken, password) => {
+        const response = await axios.put(`${ baseUrl }/users/reset_password?resetToken=${resetToken}`, password)
+        return response.data
+    }
+
+
     return {
         createUser,
         verifyUser,
-        loginUser
+        loginUser,
+        forgotPassword,
+        resetPassword
     }
 }
 

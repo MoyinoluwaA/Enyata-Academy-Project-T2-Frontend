@@ -25,7 +25,6 @@ export default new Vuex.Store({
 			commit('setToken', null)
 			TokenService.removeToken()
 		}
-
 	},
 	modules: {
 	}
