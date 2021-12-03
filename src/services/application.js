@@ -7,10 +7,13 @@ const ApplicationService = () => {
     const prefillForm = async () => {
         return api.get('/users/details')
     }
-
+    const createApplication = async (applicantDetails, batchId) => {
+        return api.put(`/applications/apply?batchId=${ batchId }`, applicantDetails)
+    }
     return {
         getUserStatus,
-        prefillForm
+        prefillForm,
+        createApplication
     }
 }
 
