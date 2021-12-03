@@ -35,17 +35,17 @@
                 <div class="row">
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">First Name</label>
-                        <input type="text" class="form-control" v-model="user.first_name" name="firstName" />
+                        <input type="text" class="form-control" v-model="user.first_name" name="firstName" readonly />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
                         <label class="mb-2">Last Name</label>
-                        <input type="text" class="form-control" v-model="user.last_name" name="lastName" />
+                        <input type="text" class="form-control" v-model="user.last_name" name="lastName" readonly/>
                     </div>
 
                     <div class="col-md-6 col-12 pe-md-4 application-form">
                         <label class="mb-2">Email</label>
-                        <input type="email" class="form-control" v-model="user.email" name="email" />
+                        <input type="email" class="form-control" v-model="user.email" name="email" readonly />
                     </div>
 
                     <div class="col-md-6 col-12 ps-md-4 application-form">
@@ -83,6 +83,7 @@
 <script>
 import Button from '../components/Button.vue'
 import UploadService from '@/services/upload'
+import AppplicationService from '@/services/application'
 
 export default {
     name: 'CreateApplication',
@@ -142,6 +143,24 @@ export default {
                 cv: false,
                 picture: false
             }
+        }
+    },
+    async mounted() {
+        try {
+            const res = await AppplicationService.prefillForm() 
+            if (res.code === 200) {
+                this.user.first_name = res.data.first_name
+                this.user.last_name = res.data.last_name
+                this.user.email = res.data.email
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                    this.$dtoast.pop({
+                        preset: "error",
+                        heading: "Unable to fetch data",
+                        message: 'Unauthenticated user'
+                    })
+                }
         }
     }
 }
