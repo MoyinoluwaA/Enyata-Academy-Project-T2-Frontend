@@ -93,7 +93,6 @@ export default {
                     } else {
                         this.$router.push({ name: 'CreateApplication' })
                     }
-                    console.log(status)
                 }
                 this.clearForm()
             } catch (error) {

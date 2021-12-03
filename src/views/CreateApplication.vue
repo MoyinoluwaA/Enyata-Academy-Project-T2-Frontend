@@ -6,16 +6,29 @@
                 <p class="text-center fst-italic mt-4 mb-4 pb-3">Application Form</p>
             </div>
 
-            <form class="application-form-details" enctype="multipart/form-data">
-                <div class="text-center">
-                    <div class="btn-upload mx-auto d-md-inline"> 
-                        + Upload CV
-                    </div>
-                    <div class="btn-upload ms-md-4 mt-4 d-md-inline mt-md-0 mx-auto">
-                        <input type="file" :name="uploadFieldName" :disabled="isSaving" accept="image/*" class="input-file"
-                            @change="filesChange($event.target.name, $event.target.files)"
+            <form class="application-form-details">
+                <div class="text-center d-md-flex">
+                    <div class="btn-upload mx-auto me-md-0 ms-md-auto"> 
+                        <input type="file" name="cvUpload" accept=".doc,.docx,application/msword,application/pdf" class="input-file"
+                            @change="uploadFile($event)"
                         > 
-                        + Upload Photo
+                        <span v-if='cvUpload'>CV Uploaded</span>
+                        <span v-else-if='fileUploadError.cv'>File size is too large. Allowed file size is 500kb</span>
+                        <span v-else>
+                            + Upload CV
+                            <span class="d-block fst-italic text-small">pdf and doc allowed</span>
+                        </span>
+                    </div>
+                    <div class="btn-upload ms-md-4 mt-4 mt-md-0 mx-auto">
+                        <input type="file" name="pictureUpload" accept="image/*" class="input-file"
+                            @change="uploadFile($event)"
+                        > 
+                        <span v-if='pictureUpload'>Picture Uploaded</span>
+                        <span v-else-if='fileUploadError.picture'>File size is too large. Allowed file size is 500kb</span>
+                        <span v-else>
+                            + Upload Photo
+                            <span class="d-block fst-italic text-small">.jpeg, .jpg and .png allowed</span>
+                        </span>
                     </div>
                 </div>
 
@@ -69,6 +82,7 @@
 
 <script>
 import Button from '../components/Button.vue'
+import UploadService from '@/services/upload'
 
 export default {
     name: 'CreateApplication',
@@ -85,7 +99,48 @@ export default {
                 address: '',
                 university: '',
                 course: '',
-                cgpa: ''
+                cgpa: '',
+                cv: {},
+                picture: {}
+            },
+            cvUpload: false,
+            pictureUpload: false,
+            fileUploadError: {
+                cv: false,
+                picture: false
+            }
+        }
+    },
+    methods: {
+        async uploadFile(event) {
+            const { name, files } = event.target
+            let formData = new FormData()
+            formData.append('file', files[0])
+            this.resetUploadError()
+
+            try {
+                this.name = false
+                const response = await UploadService.fileUpload(formData)
+
+                if (name === 'cvUpload') {
+                    this.user.cv = response.data
+                    this.cvUpload = true
+                } else {
+                    this.user.picture = response.data
+                    this.pictureUpload = true
+                }
+            } catch (error) {
+                if (error.response.status === 500 && name === 'cvUpload') {
+                    this.fileUploadError.cv = true
+                } else {
+                    this.fileUploadError.picture = true
+                }
+            }
+        },
+        resetUploadError() {
+            this.fileUploadError = {
+                cv: false,
+                picture: false
             }
         }
     }
