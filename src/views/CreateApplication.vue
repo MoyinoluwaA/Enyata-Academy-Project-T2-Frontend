@@ -68,7 +68,6 @@
 
 <script>
 import Button from '../components/Button.vue'
-// import AuthService from '@/services/auth'
 import AppplicationService from '@/services/application'
 
 export default {
