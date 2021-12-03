@@ -27,13 +27,19 @@ const AuthService = () => {
         return response.data
     }
 
+    const prefillForm = async() => {
+        const response = await axios.get(`${ baseUrl }/users/details`)
+        return response.data
+    }
+
 
     return {
         createUser,
         verifyUser,
         loginUser,
         forgotPassword,
-        resetPassword
+        resetPassword,
+        prefillForm
     }
 }
 
