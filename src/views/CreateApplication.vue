@@ -106,7 +106,7 @@
                         identifier='course'
                         label='Course'
                         v-model.lazy.trim="user.course"
-                        @input="user.course.length > 2 && user.course.match(lettersRegex)  
+                        @input="user.course.length > 2  
                             ? isError.course = 'is-valid' 
                             : isError.course = 'is-invalid'"
                         :invalidMsg="!user.course.match(lettersRegex)
