@@ -3,4 +3,8 @@
     @include media-breakpoint-up (xl) {
         width: 30%;
     }
+
+    &-wrapper {
+        overflow-x: hidden;
+    }
 }

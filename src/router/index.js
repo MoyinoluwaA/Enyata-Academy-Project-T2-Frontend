@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store';
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
@@ -100,5 +101,25 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.fullPath === '/dashboard/home') {
+      if (!store.state.token) {
+        next('/signin');
+      }
+    }
+    if (to.fullPath === '/signin') {
+      if (store.state.token) {
+        next('/dashboard/home');
+      }
+    }
+    if (to.fullPath === '/') {
+        if(store.state.token) {
+            next('/dashboard/home')
+        }
+    }
+    next();
+  });
+  
 
 export default router
