@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		token: TokenService.getToken || null
+		token: TokenService.getToken() || null
 	},
 	getters: {
 		getToken: (state) => state.token

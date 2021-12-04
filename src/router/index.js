@@ -24,7 +24,7 @@ const routes = [
     {
         path: '/signin',
         name: 'SignIn',
-        component: () => import('../views/SignIn.vue')
+        component: () => import('../views/SignIn.vue'),
     },
     {
         path: '/forgot-password',
@@ -61,6 +61,7 @@ const routes = [
         redirect: '/dashboard/home',
 		name: 'Dashboard',
 		component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue'),
+        meta: { requiresAuth: true},
 		children: [
 			{
 				path: 'home',
@@ -87,7 +88,7 @@ const routes = [
 				name: 'AssessmentCompleted',
 				component: () => import('../views/dashboard/AssessmentCompleted.vue')
 			}
-			]
+		]
 	},
     {
         path: '*',
@@ -103,23 +104,35 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.fullPath === '/dashboard/home') {
-      if (!store.state.token) {
-        next('/signin');
-      }
+    if (to.matched.some(route => route.meta.requiresAuth)) {
+        if (!(store.state.token)) {
+            next('/signin');
+        } else {
+            next()
+        }
     }
     if (to.fullPath === '/signin') {
-      if (store.state.token) {
-        next('/dashboard/home');
-      }
-    }
-    if (to.fullPath === '/') {
-        if(store.state.token) {
-            next('/dashboard/home')
+        if (store.state.token) {
+            next('/dashboard')
+        }
+    } else if (to.fullPath === '/signup') {
+        if (store.state.token) {
+            next('/dashboard')
+        }
+    } else if (to.fullPath === '/forgot-password') {
+        if (store.state.token) {
+            next('/dashboard')
+        }
+    } else if (to.fullPath === '/reset-password-email') {
+        if (store.state.token) {
+            next('/dashboard')
+        }
+    } else if (to.fullPath === '/reset-password-success') {
+        if (store.state.token) {
+            next('/dashboard')
         }
     }
     next();
   });
-  
 
 export default router
