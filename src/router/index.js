@@ -14,54 +14,63 @@ const routes = [
     {
         path: '/signup',
         name: 'SignUp',
-        component: () => import('../views/SignUp.vue')
+        component: () => import('../views/SignUp.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/verify',
         name: 'VerifyUser',
-        component: () => import('../views/VerifyUser.vue')
+        component: () => import('../views/VerifyUser.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/signin',
         name: 'SignIn',
         component: () => import('../views/SignIn.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/forgot-password',
         name: 'ForgotPassword',
-        component: () => import('../views/ForgotPassword.vue')
+        component: () => import('../views/ForgotPassword.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/reset-password',
         name: 'ResetPassword',
-        component: () => import('../views/ResetPassword.vue')
+        component: () => import('../views/ResetPassword.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/reset-password-email',
         name: 'ResetViaEmail',
-        component: () => import('../views/ResetViaEmail.vue')
+        component: () => import('../views/ResetViaEmail.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/reset-password-success',
         name: 'ResetPasswordDone',
-        component: () => import('../views/ResetPasswordDone.vue')
+        component: () => import('../views/ResetPasswordDone.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/application',
         name: 'NoApplication',
-        component: () => import('../views/NoApplication.vue')
+        component: () => import('../views/NoApplication.vue'),
+        meta: { requiresAuth: true }
     },
     {
         path: '/create-application',
         name: 'CreateApplication',
-        component: () => import('../views/CreateApplication.vue')
+        component: () => import('../views/CreateApplication.vue'),
+        meta: { requiresAuth: true }
     },
     {
 		path: '/dashboard',
         redirect: '/dashboard/home',
 		name: 'Dashboard',
 		component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue'),
-        meta: { requiresAuth: true},
+        meta: { requiresAuth: true },
 		children: [
 			{
 				path: 'home',
@@ -110,29 +119,12 @@ router.beforeEach((to, from, next) => {
         } else {
             next()
         }
-    }
-    if (to.fullPath === '/signin') {
-        if (store.state.token) {
-            next('/dashboard')
-        }
-    } else if (to.fullPath === '/signup') {
-        if (store.state.token) {
-            next('/dashboard')
-        }
-    } else if (to.fullPath === '/forgot-password') {
-        if (store.state.token) {
-            next('/dashboard')
-        }
-    } else if (to.fullPath === '/reset-password-email') {
-        if (store.state.token) {
-            next('/dashboard')
-        }
-    } else if (to.fullPath === '/reset-password-success') {
+    } else if (to.matched.some(route => !route.meta.requiresAuth)) {
         if (store.state.token) {
             next('/dashboard')
         }
     }
-    next();
-  });
+    next()
+  })
 
 export default router
