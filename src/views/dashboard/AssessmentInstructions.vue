@@ -9,10 +9,11 @@
             <ul class="assessment-instruction">
                 <li class="">Click start to get started with your quiz</li>
                 <li class="mt-2">The time starts the moment you click the Start Test button.</li>
+                <li class="mt-2">You only have <span>{{ timeAllotted }}</span> minutes allotted for this assessment.</li>
                 <li class="mt-2">Click on Next button to move to the next question. You can click on previous button to back to 
                     any previous or unanswered questions.
                 </li>
-                <li>There is a total of 30 questions in this assessment</li>
+                <li>There is a total of <span>{{ noOfQuestions }}</span> questions in this assessment</li>
                 <li class="mt-2">Note that each question consist of 4 options of which you are required to select only one as your answer</li>
                 <li class="mt-2">The total score for the quiz is based on your responses to all questions.
                     If you respond incorrectly to a question or retake a question again and get the correct response,
@@ -34,10 +35,52 @@
 
 <script>
 import Button from "@/components/Button.vue"
+import ApplicationService from '@/services/application'
 export default {
     name: 'AssessmentInstructions',
     components: {
         Button
+    },
+    data() {
+        return {
+            timeAllotted: '',
+            noOfQuestions: '',
+            batchId: 1,
+            applicantId: ''
+        }
+    },
+
+    async mounted() {
+        try {
+            const res = await ApplicationService.getApplicantStatus()
+            if (res.code === 200) {
+                this.applicantId = res.data.applicant.id
+            }
+        } catch (error) {
+             if (error.response.data.status === 401) {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Unauthenticated user",
+                    content: "Kindly go back to sign in",
+                })
+            }    
+        }
+
+        try {
+            const res = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
+            if (res.code === 200)  {
+                this.timeAllotted = res.data.time_allotted
+                this.noOfQuestions = res.data.assessment_test.length
+            }
+        } catch (error) {
+             if (error.response.data.status === 401) {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Unauthenticated user",
+                    content: "Kindly go back to sign in",
+                })
+            } 
+        }
     }
 }
 </script>

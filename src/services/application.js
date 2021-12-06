@@ -10,16 +10,19 @@ const ApplicationService = () => {
     const createApplication = async (applicantDetails, batchId) => {
         return api.put(`/applications/apply?batchId=${ batchId }`, applicantDetails)
     }
-
     const getApplicantStatus = async () => {
         return api.get(`/applications/status`)
+    }
+    const getAssessmentQuestions = async (batchId, applicantId) => {
+        return api.get(`/assessment/questions/${ batchId }?applicantId=${ applicantId }`)
     }
 
     return {
         getUserStatus,
         prefillForm,
         createApplication,
-        getApplicantStatus
+        getApplicantStatus,
+        getAssessmentQuestions
     }
 }
 
