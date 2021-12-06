@@ -84,4 +84,10 @@
             }
         }
     }
+
+    &-instructions {
+        border-bottom: 1px solid $grey-color;
+        padding-bottom: 17px;
+        margin: 0 30px;
+    }
 }

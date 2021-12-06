@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		token: TokenService.getToken || null
+		token: TokenService.getToken() || null
 	},
 	getters: {
 		getToken: (state) => state.token
@@ -25,7 +25,6 @@ export default new Vuex.Store({
 			commit('setToken', null)
 			TokenService.removeToken()
 		}
-
 	},
 	modules: {
 	}

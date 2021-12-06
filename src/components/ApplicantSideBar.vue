@@ -16,10 +16,10 @@
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                                 <div class="side-bar-top">
-                                    <img class="profile-img" src="../assets/icons/profile-dp.svg" alt="profile-img">
+                                    <img class="profile-img" :src="image" alt="profile-img">
 
-                                    <p class="applicant-name text-center">Jane Doe</p>
-                                    <p class="applicant-mail text-center">doe@enyata.com</p>
+                                    <p class="applicant-name text-center"><span>{{ first_name }}</span> <span class="ms-1">{{ last_name }}</span></p>
+                                <p class="applicant-mail text-center">{{ email }}</p>
                                 </div>
                                 <li class="nav-item">
                                     <div class="side-bar-info">
@@ -50,10 +50,10 @@
             </div>
             <div class="side-bar d-none d-md-block">
                 <div class="side-bar-top">
-                    <img class="profile-img" src="../assets/icons/profile-dp.svg" alt="profile-img">
+                    <img class="profile-img" :src="image" alt="profile-img">
 
-                    <p class="applicant-name text-center">Jane Doe</p>
-                    <p class="applicant-mail text-center">doe@enyata.com</p>
+                    <p class="applicant-name text-center"><span>{{ first_name }}</span> <span class="ms-1">{{ last_name }}</span></p>
+                    <p class="applicant-mail text-center">{{ email }}</p>
                 </div>
                 
                 <div class="side-bar-info">
@@ -81,7 +81,36 @@
 </template>
 
 <script>
+import ApplicationService from '@/services/application'
+
 export default {
+    data() {
+        return {
+            first_name: '',
+            last_name: '',
+            email: '',
+            image: ''
+        }
+    },
+    async mounted() {
+         try {
+            const res = await ApplicationService.prefillForm()
+            if (res.code == 200) {
+                this.first_name = res.data.first_name
+                this.last_name = res.data.last_name
+                this.email = res.data.email
+                this.image = res.data.picture.secure_url
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Unable to fetch data",
+                    message: 'Unauthenticated user'
+                })
+            }
+        }
+    }
 
 }
 </script>

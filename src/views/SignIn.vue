@@ -20,7 +20,7 @@
                         : isError.email = 'is-invalid'"
                     invalidMsg='Enter a valid email address'
                 />
-                <formInput
+                <formInputPassword
                     inputBoxStyle='col-md-6 offset-md-3'
                     :inputStyle="isError.password"
                     type='password'
@@ -46,6 +46,7 @@
 
 <script>
 import formInput from '@/components/Input.vue'
+import formInputPassword from '@/components/InputPassword.vue'
 import { emailRegex, passwordRegex } from '@/helpers/variables'
 import AuthService from '@/services/auth'
 import ApplicationService from '@/services/application'
@@ -55,6 +56,7 @@ export default {
     name: 'SignIn',
 	components: {
         formInput,
+        formInputPassword
 	},
      data() {
         return {
@@ -91,7 +93,6 @@ export default {
                     } else {
                         this.$router.push({ name: 'CreateApplication' })
                     }
-                    console.log(status)
                 }
                 this.clearForm()
             } catch (error) {
