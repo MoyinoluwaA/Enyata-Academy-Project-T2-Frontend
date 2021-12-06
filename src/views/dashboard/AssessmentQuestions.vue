@@ -9,11 +9,13 @@
             <div class="assessment-timer-wrapper mt-4 mt-md-0">
                 <p class="assessment-timer-text mb-1">Timer</p>
                 <p class="timer">
-                    <span class="timer">00</span>
+                    <span class="timer">{{ mins }}</span>
                     <span class="timer-min">min</span>
-                    <span>010</span>
+                    <span>{{ secs }}</span>
                     <span class="timer-sec">sec</span>  
                 </p>
+
+           
             </div>
         </div>
 
@@ -74,6 +76,33 @@ import Button from "@/components/Button.vue"
 export default {
     components: {
         Button
+    },
+    data() {
+        return {
+            mins: '',
+            secs: '',
+        }
+    },
+    methods: {
+        startTimer(duration) {
+            let timer = duration
+            setInterval(() => {
+                this.mins = parseInt(timer / 60, 10);
+                this.secs = parseInt(timer % 60, 10);
+
+                this.mins = this.mins < 10 ? "0" + this.mins : this.mins;
+                this.secs = this.secs < 10 ? "0" + this.secs : this.secs;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+    },
+    mounted() {
+        const thirtyMins = 60 * 30
+
+        this.startTimer(thirtyMins)
     }
 }
 </script>
