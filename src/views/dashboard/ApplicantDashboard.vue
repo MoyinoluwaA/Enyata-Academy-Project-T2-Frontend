@@ -73,7 +73,7 @@
                                 <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
                             </router-link>
                             <router-link v-else :to="{ name: 'Dashboard'}">
-                                <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' :disabled='isDisabled' />
+                                <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
                             </router-link>
                         </div>
                     </div>
@@ -143,13 +143,6 @@ export default {
                     content: "Kindly go back to sign in",
                 })
             }
-        }
-    },
-    computed: {
-        isDisabled() {
-            return (
-                this.status !== 'approved' 
-            )
         }
     }
 }

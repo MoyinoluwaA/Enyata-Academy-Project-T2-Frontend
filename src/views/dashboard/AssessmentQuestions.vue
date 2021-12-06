@@ -130,6 +130,24 @@ export default {
             const res = await ApplicationService.getApplicantStatus()
             if (res.code === 200) {
                 this.applicantId = res.data.applicant.id
+
+                 try {
+                    const res = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
+                    if (res.code === 200) {
+                        console.log(res)
+                        this.assessments = res.data.assessment_test
+                        this.currentQuestion = this.assessments[0]
+                        this.time = res.data.time_allotted
+                    }
+                } catch (error) {
+                    if (error.response.data.status === 401) {
+                        this.$dtoast.pop({
+                            preset: "error",
+                            heading: "Unauthenticated user",
+                            content: "Kindly go back to sign in",
+                        })
+                    }  
+                }
             }
         } catch (error) {
              if (error.response.data.status === 401) {
@@ -139,24 +157,6 @@ export default {
                     content: "Kindly go back to sign in",
                 })
             }    
-        }
-
-        try {
-            const res = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
-            if (res.code === 200) {
-                console.log(res)
-                this.assessments = res.data.assessment_test
-                this.currentQuestion = this.assessments[0]
-                this.time = res.data.time_allotted
-            }
-        } catch (error) {
-            if (error.response.data.status === 401) {
-                this.$dtoast.pop({
-                    preset: "error",
-                    heading: "Unauthenticated user",
-                    content: "Kindly go back to sign in",
-                })
-            }  
         }
         
         this.startTimer(this.time * 60)
