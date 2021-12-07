@@ -19,9 +19,15 @@
             list-style-type: none;
             margin-top: 37px; 
         }
-    }
-    &-selected-answer {
-        background: #31D283;
-        padding: 6px;
+
+        .selected {
+            .question-option {
+                background: #31D283;
+                padding: 6px;
+            }
+            .bi-square {
+                background-color: black;
+            }
+        }
     }
 }

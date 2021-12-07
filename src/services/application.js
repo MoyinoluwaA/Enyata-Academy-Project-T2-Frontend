@@ -16,13 +16,17 @@ const ApplicationService = () => {
     const getAssessmentQuestions = async (batchId, applicantId) => {
         return api.get(`/assessment/questions/${ batchId }?applicantId=${ applicantId }`)
     }
+    const submitAssessment = async (batchId, applicantId, answers) => {
+        return api.post(`/assessment/submit/${ batchId }?applicantId=${ applicantId }`, answers)
+    }
 
     return {
         getUserStatus,
         prefillForm,
         createApplication,
         getApplicantStatus,
-        getAssessmentQuestions
+        getAssessmentQuestions,
+        submitAssessment
     }
 }
 
