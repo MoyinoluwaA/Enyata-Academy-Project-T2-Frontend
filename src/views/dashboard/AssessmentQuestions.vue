@@ -22,7 +22,7 @@
             <p class="question text-center fw-bold fs-4 fst-italic">{{currentQuestion.question}}</p>
 
             <div>
-                <ul class="applicant-question p-0 mx-auto options">
+                <ul class="applicant-question p-0 mx-auto">
                     <li @click="selectAnswer($event)" :class="{'selected' : index.toUpperCase() === selectedAnswers[question_number]}" 
                         v-for="(option, index) in currentQuestion.options" :key="option.id"
                     >
