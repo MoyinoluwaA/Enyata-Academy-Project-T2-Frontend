@@ -73,7 +73,7 @@
                     
                     <div class="logout-menus ms-3">
                         <img class="logout-img" src="../assets/icons/logout-icon.svg" alt="logout"/>
-                        <span class="logout-menu">Log Out</span>
+                        <span class="logout-menu" @click="logOut">Log Out</span>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,7 @@
 
 <script>
 import ApplicationService from '@/services/application'
+import { mapActions } from 'vuex'
 
 export default {
     data() {
@@ -110,7 +111,13 @@ export default {
                 })
             }
         }
+    },
+    methods: {
+        ...mapActions(['handleLogOut']),
+        logOut() {
+            this.handleLogOut()
+            this.$router.push({ name: 'SignIn' })
+        }
     }
-
 }
 </script>

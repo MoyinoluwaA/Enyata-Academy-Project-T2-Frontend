@@ -21,33 +21,13 @@
             <p class="question-number text-center fw-bold fs-6 fst-italic">Question <span>{{ question_number }}</span></p>
             <p class="question text-center fw-bold fs-4 fst-italic">{{currentQuestion.question}}</p>
 
-            <div class="">
+            <div>
                 <ul class="applicant-question p-0 mx-auto">
-                    <li>
-                        <img src="../../assets/icons/option.svg" alt="option" />
+                    <li @click="selectAnswer($event)" class="options" :class="question_number" v-for="(option, index) in currentQuestion.options" :key="option.id">
+                        <i class="bi bi-square" />
                         <span class="question-option ms-4">
-                            A. <span>{{currentQuestion.options.a}}</span>
-                        </span>
-                    </li>
-
-                    <li>
-                        <img src="../../assets/icons/option.svg" alt="option" />
-                        <span class="question-option ms-4">
-                            B. <span>{{currentQuestion.options.b}}</span>
-                        </span>
-                    </li>
-
-                    <li>
-                        <img src="../../assets/icons/option-answered.svg" alt="option" />
-                        <span class="question-option applicant-selected-answer ms-4">
-                            C. <span>{{currentQuestion.options.c}}</span>
-                        </span>
-                    </li>
-
-                    <li>
-                        <img src="../../assets/icons/option.svg" alt="option" />
-                        <span class="question-option ms-4">
-                            D. <span>{{currentQuestion.options.d}}</span>
+                            {{ index.toUpperCase() }}. 
+                            <span>{{ option }}</span>
                         </span>
                     </li>
                 </ul>
@@ -59,9 +39,7 @@
             </div>
 
             <div class="text-center mt-4 mb-5">
-                <router-link :to="{ name: 'AssessmentCompleted' }">
-                    <Button btnText="Finish" btnStyle="btn--gray my-5" />
-                </router-link>
+                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" />
             </div>
         </div>
 
@@ -71,8 +49,10 @@
 <script>
 import Button from "@/components/Button.vue"
 import ApplicationService from '@/services/application'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
+    name: 'AssessmentQuestions',
     components: {
         Button
     },
@@ -84,14 +64,16 @@ export default {
             assessments: [],
             currentQuestion: {},
             time: '',
-            selectedAnswer: {},
+            selectedAnswers: {},
             nextDisabled: false,
-            prevDisabled: true,
-            batchId: 1,
-            applicantId: ''
+            prevDisabled: true
         }
     },
+    computed: {
+        ...mapGetters(['getBatchId', 'getApplicantId'])
+    },
     methods: {
+        ...mapActions(['saveApplicantDetails']),
         startTimer(duration) {
             let timer = duration
             setInterval(() => {
@@ -131,6 +113,35 @@ export default {
             if (this.question_number === 1) {
                 this.prevDisabled = true
             }
+        },
+        selectAnswer(e) {
+            const selectedAnswer = e.target.closest('li')
+            this.selectedAnswers[this.question_number] = selectedAnswer.children[1].innerText.charAt(1)
+
+            const options = document.getElementsByClassName('options')
+            for (const option of options) {
+                if (option.classList.contains('selected')) {
+                    option.classList.remove('selected')
+                }
+            }
+
+            selectedAnswer.classList.add('selected')
+        },
+        async submitAssessment() {
+            try {
+                const res = await ApplicationService.submitAssessment(this.batchId, this.applicantId, 
+                    { assessment_answers: {...this.selectedAnswers} }
+                )
+                if (res.code === 200) {
+                    this.$router.push({ name: 'AssessmentCompleted' })
+                }
+            } catch (error) {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: 'Error occured while submitting',
+                    content: 'Please try submitting your assessment again or contact admin at feedback@enyata.com'
+                })
+            }
         }
     },
     async mounted() {
@@ -138,6 +149,7 @@ export default {
             const res = await ApplicationService.getApplicantStatus()
             if (res.code === 200) {
                 this.applicantId = res.data.applicant.id
+                this.batchId = res.data.applicant.batch_id
 
                 const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
                 if (response.code === 200) {
@@ -157,6 +169,6 @@ export default {
         }
         
         this.startTimer(this.time * 60)
-    }
+    },
 }
 </script>
