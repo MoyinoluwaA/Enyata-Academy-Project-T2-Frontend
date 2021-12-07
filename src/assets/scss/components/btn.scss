@@ -61,6 +61,17 @@
         height: 41px;
     }
 
+    &--purple {
+        @include button($purple-color, $white-color);
+        border: none;
+        width: 205px;
+        height: 41px;
+        &:hover {
+            color: $gray-color;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        }
+    }
+
     &-previous {
         background: $white-color;
         width: 125px;
@@ -85,5 +96,9 @@
     &-start {
         @include button($purple-color, $white-color);
         padding: 10px 40px 10px 40px;
+        &:hover {
+            color: $gray-color;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        }
     }
 }

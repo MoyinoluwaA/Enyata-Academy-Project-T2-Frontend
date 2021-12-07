@@ -14,50 +14,48 @@
                     <span>{{ secs }}</span>
                     <span class="timer-sec">sec</span>  
                 </p>
-
-           
             </div>
         </div>
 
-        <div class="assessment-question-wrapper mb-5">
-            <p class="question-number text-center fw-bold fs-6 fst-italic">Question 1</p>
-            <p class="question text-center fw-bold fs-4 fst-italic">What is the purpose of HDR technology?</p>
+        <div class="assessment-question-wrapper mb-5" v-if="assessments.length > 0">
+            <p class="question-number text-center fw-bold fs-6 fst-italic">Question <span>{{ question_number }}</span></p>
+            <p class="question text-center fw-bold fs-4 fst-italic">{{currentQuestion.question}}</p>
 
             <div class="">
                 <ul class="applicant-question p-0 mx-auto">
                     <li>
                         <img src="../../assets/icons/option.svg" alt="option" />
                         <span class="question-option ms-4">
-                            A. To reduce the file size of images and videos.
+                            A. <span>{{currentQuestion.options.a}}</span>
                         </span>
                     </li>
 
                     <li>
                         <img src="../../assets/icons/option.svg" alt="option" />
                         <span class="question-option ms-4">
-                            B. To speed up 3D rendering performance.
+                            B. <span>{{currentQuestion.options.b}}</span>
                         </span>
                     </li>
 
                     <li>
                         <img src="../../assets/icons/option-answered.svg" alt="option" />
                         <span class="question-option applicant-selected-answer ms-4">
-                            C. To support higher video resolutions.
+                            C. <span>{{currentQuestion.options.c}}</span>
                         </span>
                     </li>
 
                     <li>
                         <img src="../../assets/icons/option.svg" alt="option" />
                         <span class="question-option ms-4">
-                            D. To display more colors in images and videos
+                            D. <span>{{currentQuestion.options.d}}</span>
                         </span>
                     </li>
                 </ul>
             </div>
 
             <div class="assessment-btn">
-                <Button btnText="Previous" btnStyle="btn-previous" />
-                <Button btnText="Next" btnStyle="btn-next" />
+                <Button btnText="Previous" btnStyle="btn-previous" @click.native="back" :disabled='prevDisabled' />
+                <Button btnText="Next" btnStyle="btn-next" @click.native="next" :disabled='nextDisabled' />
             </div>
 
             <div class="text-center mt-4 mb-5">
@@ -72,6 +70,7 @@
 
 <script>
 import Button from "@/components/Button.vue"
+import ApplicationService from '@/services/application'
 
 export default {
     components: {
@@ -81,6 +80,15 @@ export default {
         return {
             mins: '',
             secs: '',
+            question_number: 1,
+            assessments: [],
+            currentQuestion: {},
+            time: '',
+            selectedAnswer: {},
+            nextDisabled: false,
+            prevDisabled: true,
+            batchId: 1,
+            applicantId: ''
         }
     },
     methods: {
@@ -97,12 +105,58 @@ export default {
                     timer = duration;
                 }
             }, 1000);
+        },
+
+        next() {
+            this.nextDisabled = false
+            if (this.question_number <= this.assessments.length - 1) {
+                this.currentQuestion = this.assessments[this.question_number]
+                this.question_number++
+                this.prevDisabled = false
+            } 
+
+            if (this.question_number === this.assessments.length) {
+                this.nextDisabled = true
+            }
+        },
+        back() {
+            this.prevDisabled = false
+           
+            if (this.question_number > 1) {
+                this.question_number--
+                this.currentQuestion = this.assessments[this.question_number-1]
+                this.nextDisabled = false
+            } 
+
+            if (this.question_number === 1) {
+                this.prevDisabled = true
+            }
         }
     },
-    mounted() {
-        const thirtyMins = 60 * 30
+    async mounted() {
+        try {
+            const res = await ApplicationService.getApplicantStatus()
+            if (res.code === 200) {
+                this.applicantId = res.data.applicant.id
 
-        this.startTimer(thirtyMins)
+                const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
+                if (response.code === 200) {
+                    this.assessments = response.data.assessment_test
+                    this.currentQuestion = this.assessments[0]
+                    this.time = response.data.time_allotted
+                } 
+            }
+        } catch (error) {
+             if (error.response.data.status === 401) {
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Unauthenticated user",
+                    content: "Kindly go back to sign in",
+                })
+            }    
+        }
+        
+        this.startTimer(this.time * 60)
     }
 }
 </script>
