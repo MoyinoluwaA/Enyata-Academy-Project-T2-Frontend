@@ -23,7 +23,9 @@
 
             <div>
                 <ul class="applicant-question p-0 mx-auto">
-                    <li @click="selectAnswer($event)" class="options" :class="question_number" v-for="(option, index) in currentQuestion.options" :key="option.id">
+                    <li @click="selectAnswer($event)" :class="{'selected' : index.toUpperCase() === selectedAnswers[question_number]}" 
+                        v-for="(option, index) in currentQuestion.options" :key="option.id"
+                    >
                         <i class="bi bi-square" />
                         <span class="question-option ms-4">
                             {{ index.toUpperCase() }}. 
@@ -117,15 +119,6 @@ export default {
         selectAnswer(e) {
             const selectedAnswer = e.target.closest('li')
             this.selectedAnswers[this.question_number] = selectedAnswer.children[1].innerText.charAt(1)
-
-            const options = document.getElementsByClassName('options')
-            for (const option of options) {
-                if (option.classList.contains('selected')) {
-                    option.classList.remove('selected')
-                }
-            }
-
-            selectedAnswer.classList.add('selected')
         },
         async submitAssessment() {
             try {
