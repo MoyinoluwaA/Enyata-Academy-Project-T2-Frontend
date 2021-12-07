@@ -56,22 +56,11 @@ export default {
             if (res.code === 200) {
                 this.applicantId = res.data.applicant.id
 
-                try {
-                    const res = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
-                    if (res.code === 200)  {
-                        this.timeAllotted = res.data.time_allotted
-                        this.noOfQuestions = res.data.assessment_test.length
-                    }
-                } catch (error) {
-                    if (error.response.data.status === 401) {
-                        this.$dtoast.pop({
-                            preset: "error",
-                            heading: "Unauthenticated user",
-                            content: "Kindly go back to sign in",
-                        })
-                    } 
-                }   
-                
+                const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
+                if (response.code === 200)  {
+                    this.timeAllotted = response.data.time_allotted
+                    this.noOfQuestions = response.data.assessment_test.length
+                }
             }
         } catch (error) {
              if (error.response.data.status === 401) {
@@ -81,9 +70,7 @@ export default {
                     content: "Kindly go back to sign in",
                 })
             }    
-        }
-
-      
+        }      
     }
 }
 </script>

@@ -14,8 +14,6 @@
                     <span>{{ secs }}</span>
                     <span class="timer-sec">sec</span>  
                 </p>
-
-           
             </div>
         </div>
 
@@ -28,7 +26,7 @@
                     <li>
                         <img src="../../assets/icons/option.svg" alt="option" />
                         <span class="question-option ms-4">
-                             <span>{{currentQuestion.options.b}}</span>
+                            A. <span>{{currentQuestion.options.a}}</span>
                         </span>
                     </li>
 
@@ -56,7 +54,7 @@
             </div>
 
             <div class="assessment-btn">
-                <Button btnText="Previous" btnStyle="btn-previous" @click.native="back" />
+                <Button btnText="Previous" btnStyle="btn-previous" @click.native="back" :disabled='prevDisabled' />
                 <Button btnText="Next" btnStyle="btn-next" @click.native="next" :disabled='nextDisabled' />
             </div>
 
@@ -88,6 +86,7 @@ export default {
             time: '',
             selectedAnswer: {},
             nextDisabled: false,
+            prevDisabled: true,
             batchId: 1,
             applicantId: ''
         }
@@ -110,18 +109,27 @@ export default {
 
         next() {
             this.nextDisabled = false
-            if (this.question_number <= this.assessments.length-1) {
+            if (this.question_number <= this.assessments.length - 1) {
                 this.currentQuestion = this.assessments[this.question_number]
                 this.question_number++
-            } else {
+                this.prevDisabled = false
+            } 
+
+            if (this.question_number === this.assessments.length) {
                 this.nextDisabled = true
             }
         },
         back() {
+            this.prevDisabled = false
+           
             if (this.question_number > 1) {
                 this.question_number--
                 this.currentQuestion = this.assessments[this.question_number-1]
                 this.nextDisabled = false
+            } 
+
+            if (this.question_number === 1) {
+                this.prevDisabled = true
             }
         }
     },
@@ -131,23 +139,12 @@ export default {
             if (res.code === 200) {
                 this.applicantId = res.data.applicant.id
 
-                 try {
-                    const res = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
-                    if (res.code === 200) {
-                        console.log(res)
-                        this.assessments = res.data.assessment_test
-                        this.currentQuestion = this.assessments[0]
-                        this.time = res.data.time_allotted
-                    }
-                } catch (error) {
-                    if (error.response.data.status === 401) {
-                        this.$dtoast.pop({
-                            preset: "error",
-                            heading: "Unauthenticated user",
-                            content: "Kindly go back to sign in",
-                        })
-                    }  
-                }
+                const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
+                if (response.code === 200) {
+                    this.assessments = response.data.assessment_test
+                    this.currentQuestion = this.assessments[0]
+                    this.time = response.data.time_allotted
+                } 
             }
         } catch (error) {
              if (error.response.data.status === 401) {
