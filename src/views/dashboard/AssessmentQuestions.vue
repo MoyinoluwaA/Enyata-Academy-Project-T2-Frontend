@@ -23,7 +23,7 @@
 
             <div>
                 <ul class="applicant-question p-0 mx-auto">
-                    <li @click="selectAnswer($event)" class="options" :class="question_number" v-for="(option, index) in currentQuestion.options" :key="option.id">
+                    <li @click="selectAnswer($event)" class="options assessment-select-answer" :class="question_number" v-for="(option, index) in currentQuestion.options" :key="option.id">
                         <i class="bi bi-square" />
                         <span class="question-option ms-4">
                             {{ index.toUpperCase() }}. 
@@ -39,7 +39,7 @@
             </div>
 
             <div class="text-center mt-4 mb-5">
-                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" />
+                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" :disabled='finishDisabled' />
             </div>
         </div>
 
@@ -66,7 +66,8 @@ export default {
             time: '',
             selectedAnswers: {},
             nextDisabled: false,
-            prevDisabled: true
+            prevDisabled: true,
+            finishDisabled: true
         }
     },
     computed: {
@@ -133,6 +134,9 @@ export default {
                     { assessment_answers: {...this.selectedAnswers} }
                 )
                 if (res.code === 200) {
+                    // if (this.selectedAnswers[this.question_number].length === this.assessments.length ) {
+                    //     this.finishDisabled = false
+                    // }
                     this.$router.push({ name: 'AssessmentCompleted' })
                 }
             } catch (error) {
