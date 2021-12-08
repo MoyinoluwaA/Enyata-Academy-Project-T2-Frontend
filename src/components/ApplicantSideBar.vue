@@ -37,7 +37,7 @@
                                             </router-link>
                                         </div>
 
-                                        <div class="logout-menus ms-3">
+                                        <div class="logout-menus ms-3" @click="logOut">
                                             <img class="logout-img" src="../assets/icons/logout-icon.svg" alt="logout"/>
                                             <span class="logout-menu">Log Out</span>
                                         </div>
@@ -71,9 +71,9 @@
                         </router-link>
                     </div>
                     
-                    <div class="logout-menus ms-3">
+                    <div class="logout-menus ms-3" @click="logOut">
                         <img class="logout-img" src="../assets/icons/logout-icon.svg" alt="logout"/>
-                        <span class="logout-menu" @click="logOut">Log Out</span>
+                        <span class="logout-menu" >Log Out</span>
                     </div>
                 </div>
             </div>

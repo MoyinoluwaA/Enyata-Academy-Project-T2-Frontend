@@ -23,7 +23,7 @@
 
             <div>
                 <ul class="applicant-question p-0 mx-auto">
-                    <li @click="selectAnswer($event)" :class="{'selected' : index.toUpperCase() === selectedAnswers[question_number]}" 
+                    <li class="assessment-select-answer" @click="selectAnswer($event)" :class="{'selected' : index.toUpperCase() === selectedAnswers[question_number]}" 
                         v-for="(option, index) in currentQuestion.options" :key="option.id"
                     >
                         <i class="bi bi-square" />
@@ -41,7 +41,7 @@
             </div>
 
             <div class="text-center mt-4 mb-5">
-                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" />
+                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" :disabled='finishDisabled' />
             </div>
         </div>
 
@@ -68,7 +68,8 @@ export default {
             time: '',
             selectedAnswers: {},
             nextDisabled: false,
-            prevDisabled: true
+            prevDisabled: true,
+            finishDisabled: true
         }
     },
     computed: {
@@ -101,6 +102,10 @@ export default {
 
             if (this.question_number === this.assessments.length) {
                 this.nextDisabled = true
+
+                const answerSelected = Object.keys(this.selectedAnswers)
+                if (answerSelected.length === this.assessments.length-1)
+                this.finishDisabled = false
             }
         },
         back() {
