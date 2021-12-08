@@ -102,6 +102,10 @@ export default {
 
             if (this.question_number === this.assessments.length) {
                 this.nextDisabled = true
+
+                const answerSelected = Object.keys(this.selectedAnswers)
+                if (answerSelected.length === this.assessments.length-1)
+                this.finishDisabled = false
             }
         },
         back() {
@@ -127,9 +131,6 @@ export default {
                     { assessment_answers: {...this.selectedAnswers} }
                 )
                 if (res.code === 200) {
-                    // if (this.selectedAnswers[this.question_number].length === this.assessments.length ) {
-                    //     this.finishDisabled = false
-                    // }
                     this.$router.push({ name: 'AssessmentCompleted' })
                 }
             } catch (error) {
