@@ -21,7 +21,7 @@
                                     <p class="applicant-name text-center"><span>{{ first_name }}</span> <span class="ms-1">{{ last_name }}</span></p>
                                 <p class="applicant-mail text-center">{{ email }}</p>
                                 </div>
-                                <li class="nav-item">
+                                <li class="nav-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                                     <div class="side-bar-info">
                                         <div class="dashboard-menus">
                                             <router-link class="dashboard-link" :to="{ name: 'ApplicantDashboard'}">
