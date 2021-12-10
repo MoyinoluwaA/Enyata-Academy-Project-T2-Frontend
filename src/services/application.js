@@ -1,4 +1,5 @@
 import api from './access'
+import axios from 'axios'
 
 const ApplicationService = () => {
     const getUserStatus = async () => {
@@ -19,6 +20,9 @@ const ApplicationService = () => {
     const submitAssessment = async (batchId, applicantId, answers) => {
         return api.post(`/assessment/submit/${ batchId }?applicantId=${ applicantId }`, answers)
     }
+    const getApplicationStatus = async () => {
+        return axios.get('https://enyata-academy.herokuapp.com/api/applications/status/applications')
+    }
 
     return {
         getUserStatus,
@@ -26,7 +30,8 @@ const ApplicationService = () => {
         createApplication,
         getApplicantStatus,
         getAssessmentQuestions,
-        submitAssessment
+        submitAssessment,
+        getApplicationStatus
     }
 }
 
