@@ -119,7 +119,7 @@ router.beforeEach((to, from, next) => {
         } else {
             next()
         }
-    } else if (to.matched.some(route => !route.meta.requiresAuth)) {
+    } else if (to.matched.some(route => route.meta.requiresAuth === false)) {
         if (store.state.token) {
             next('/dashboard')
         }
