@@ -41,7 +41,7 @@
             </div>
 
             <div class="text-center mt-4 mb-5">
-                <Button btnText="Finish" btnStyle="btn--gray my-5" @click.native="submitAssessment" :disabled='finishDisabled' />
+                <Button btnText="Finish" btnStyle="btn--purple my-5" @click.native="submitAssessment" :disabled='finishDisabled' />
             </div>
         </div>
 
