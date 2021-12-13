@@ -9,9 +9,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="nav-links navbar-nav align-items-md-center mb-2 mb-lg-0 ms-md-auto">
-                    <router-link to="/" class="nav-link me-4 pe-3">Home</router-link> 
-                    <router-link to="/signin" class="nav-link me-4 pe-3">Sign in</router-link>
-                    <router-link to="/signup" class="nav-link btn btn-lg btn-register-white" role="button">
+                    <router-link to="/" class="nav-link nav-link-default me-4 pe-3">Home</router-link> 
+                    <router-link v-if="application && loggedIn===false" to="/signin" class="nav-link nav-link-default me-4 pe-3">Sign in</router-link>
+                    <router-link v-if="application && loggedIn" to="/dashboard" class="nav-link btn btn-lg btn-register-white" role="button">Dashboard</router-link>
+                    <router-link v-if="application && loggedIn===false" to="/signup" class="nav-link btn btn-lg btn-register-white" role="button">
                         Register Now
                     </router-link>
                 </div>
@@ -22,6 +23,10 @@
 
 <script>
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    props: {
+        application: Boolean,
+        loggedIn: Boolean
+    }
 }
 </script> 

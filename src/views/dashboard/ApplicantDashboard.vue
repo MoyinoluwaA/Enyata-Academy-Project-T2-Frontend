@@ -69,7 +69,10 @@
                             <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else>
                                 Your application was declined.
                             </p>
-                            <router-link :to="{ name: 'TakeAssessment'}">
+                            <router-link v-if="status === 'approved'" :to="{ name: 'TakeAssessment'}">
+                                <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
+                            </router-link>
+                            <router-link v-else :to="{ name: 'Dashboard'}">
                                 <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
                             </router-link>
                         </div>

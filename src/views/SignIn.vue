@@ -79,16 +79,18 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['handleLogIn']), 
+        ...mapActions(['handleLogIn', 'saveApplicantDetails']), 
         async signIn() {
             try {
                 const res = await AuthService.loginUser({...this.user})
                 if (res.code === 200) {
                     this.handleLogIn(res.data.token)
-
                     const status = await ApplicationService.getUserStatus()
 
                     if (status.data.isApplicant === true) {
+                        const { id, batch_id } = status.data.applicant
+                        this.saveApplicantDetails({applicant_id: id, batch_id})
+
                         this.$router.push({ name: 'Dashboard' })
                     } else {
                         this.$router.push({ name: 'CreateApplication' })

@@ -8,6 +8,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import './styles.scss'
 
+import VueCountdownTimer from 'vuejs-countdown-timer';
+Vue.use(VueCountdownTimer);
+
 import DToaster from 'dtoaster'
 import ToasterPresets from './toastPreset.json' //Your predefined toasts presets (optionally)
 
