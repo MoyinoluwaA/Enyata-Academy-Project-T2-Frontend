@@ -1,86 +1,88 @@
 <template>
     <div class="dashboard-main-content">
-        <div>
-            <h2 class="dashboard-header-wrapper">Dashboard</h2>
-            <p class="fst-italic fs-6" v-if="status === 'approved'">Your Application has been approved, kindly watch the space to know your assessment date</p>
-            <p class="fst-italic fs-6" v-else-if="status === 'pending'">Your Application is currently being reviewed, you wil be notified if successful</p>
-            <p class="fst-italic fs-6" v-else>Sorry, you didn't meet the requirement for this current application, kindly wait till next batch</p>
-        </div>
-
-        <div class="dashboard-content d-flex flex-column flex-sm-row">
+        <p v-if='loading' class="mt-5 text-center fw-bloder fs-3">Loading....</p>
+        <div v-else>
             <div>
-                <p class="application-date">Date of Application</p>
-                <h3 class="text-large">{{ applicationDate }}</h3>
-                <img src="../../assets/icons/date-of-application-status.svg" alt="status" />
-                <p class="application-sub-text" v-if="status === 'approved'">
-                    <span v-if="daysFromApplication >= 1">
-                        {{ daysFromApplication }} days
-                    </span>  
-                    <span v-else>
-                        {{ hoursFromApplication }} hours
-                    </span>
-                    since applied
-                </p>
-                <p class="application-sub-text" v-else>Kindly wait till next batch</p>
+                <h2 class="dashboard-header-wrapper">Dashboard</h2>
+                <p class="fst-italic fs-6" v-if="status === 'approved'">Your Application has been approved, kindly watch the space to know your assessment date</p>
+                <p class="fst-italic fs-6" v-else-if="status === 'pending'">Your Application is currently being reviewed, you wil be notified if successful</p>
+                <p class="fst-italic fs-6" v-else>Sorry, you didn't meet the requirement for this current application, kindly wait till next batch</p>
             </div>
-            <div class="application-status mt-4 mt-sm-0">
-                <p class="application-status-text">Application Status</p>
-                <h3 class="text-large" v-if="status === 'approved'">Approved</h3>
-                <h3 class="text-large" v-else-if="status === 'declined'">Declined</h3>
-                <h3 class="text-large" v-else>Pending</h3>
-                <img src="../../assets/icons/pending-status.svg" alt="status" />
-                <p class="application-sub-text" v-if="status === 'approved'">Status approved</p>
-                <p class="application-sub-text" v-else-if="status === 'pending'">We will get back to you</p>
-                <p class="application-sub-text" v-else>Kindly look forward to the next batch</p>
-            </div>
-        </div>
 
-        <div class="dashboard-bottom mb-5">
-            <div class="col-lg-6 col-12">
-                <div class="update-wrapper me-auto">
-                    <p class="p-4 fw-bold">Updates</p>
-                    <div>
-                        <p class="dashboard-instructions">{{ instructions }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12">
-                <div class="update-wrapper mt-4 mt-lg-0 ms-auto">
-                    <p class="p-4 fw-bold">Take Assessment</p>
-                    <div class="assessment-cta">    
-                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-if="status === 'approved'">
-                            <span v-if="daysToAssessment >= 1">
-                                We have 
-                                <span>
-                                    {{ daysToAssessment }} {{ daysToAssessment > 1 ? 'days' : 'day' }}
-                                </span> 
-                                left until the next assessment.<br/>Watch this space
-                            </span>
-                            <span v-else>You can now take your assessment test</span>
-                        </p>
-
-                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else-if="status === 'pending'">We have 
-                            <span>
-                                {{ daysToAssessment }} 
-                            </span> 
-                            days left until the next assessment.<br/>Watch this space
-                        </p>
-
-                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else>
-                            Your application was declined.
-                        </p>
-
-                        <router-link v-if="status === 'approved' && daysToAssessment < 1" :to="{ name: 'TakeAssessment'}">
-                            <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
-                        </router-link>
+            <div class="dashboard-content d-flex flex-column flex-sm-row">
+                <div>
+                    <p class="application-date">Date of Application</p>
+                    <h3 class="text-large">{{ applicationDate }}</h3>
+                    <img src="../../assets/icons/date-of-application-status.svg" alt="status" />
+                    <p class="application-sub-text" v-if="status === 'approved'">
+                        <span v-if="daysFromApplication >= 1">
+                            {{ daysFromApplication }} days
+                        </span>  
                         <span v-else>
-                            <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
+                            {{ hoursFromApplication }} hours
                         </span>
+                        since applied
+                    </p>
+                    <p class="application-sub-text" v-else>Kindly wait till next batch</p>
+                </div>
+                <div class="application-status mt-4 mt-sm-0">
+                    <p class="application-status-text">Application Status</p>
+                    <h3 class="text-large" v-if="status === 'approved'">Approved</h3>
+                    <h3 class="text-large" v-else-if="status === 'declined'">Declined</h3>
+                    <h3 class="text-large" v-else>Pending</h3>
+                    <img src="../../assets/icons/pending-status.svg" alt="status" />
+                    <p class="application-sub-text" v-if="status === 'approved'">Status approved</p>
+                    <p class="application-sub-text" v-else-if="status === 'pending'">We will get back to you</p>
+                    <p class="application-sub-text" v-else>Kindly look forward to the next batch</p>
+                </div>
+            </div>
+
+            <div class="dashboard-bottom mb-5">
+                <div class="col-lg-6 col-12">
+                    <div class="update-wrapper me-auto">
+                        <p class="p-4 fw-bold">Updates</p>
+                        <div>
+                            <p class="dashboard-instructions">{{ instructions }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="update-wrapper mt-4 mt-lg-0 ms-auto">
+                        <p class="p-4 fw-bold">Take Assessment</p>
+                        <div class="assessment-cta">    
+                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-if="status === 'approved'">
+                                <span v-if="daysToAssessment >= 1">
+                                    We have 
+                                    <span>
+                                        {{ daysToAssessment }} {{ daysToAssessment > 1 ? 'days' : 'day' }}
+                                    </span> 
+                                    left until the next assessment.<br/>Watch this space
+                                </span>
+                                <span v-else>You can now take your assessment test</span>
+                            </p>
+
+                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else-if="status === 'pending'">We have 
+                                <span>
+                                    {{ daysToAssessment }} 
+                                </span> 
+                                days left until the next assessment.<br/>Watch this space
+                            </p>
+
+                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else>
+                                Your application was declined.
+                            </p>
+
+                            <router-link v-if="status === 'approved' && daysToAssessment < 1" :to="{ name: 'TakeAssessment'}">
+                                <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
+                            </router-link>
+                            <span v-else>
+                                <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -103,7 +105,8 @@ export default {
             daysFromApplication: '',
             hoursFromApplication: '',
             instructions: '',
-            daysToAssessment: ''
+            daysToAssessment: '',
+            loading: true
         }
     },
     methods: {
@@ -134,6 +137,7 @@ export default {
                 this.assessmentStartDate = res.data.academy.assessment_start_date
                 this.status = res.data.applicant.status
 
+                this.loading = false
                 this.saveApplicantStatus({ daysToAssessment: this.daysToAssessment, applicantStatus: this.status })
             }
         } catch (error) {
