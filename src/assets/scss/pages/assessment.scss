@@ -92,10 +92,17 @@
         flex-direction: column;
         justify-content: center;
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% {  transform: rotate(359deg); }
+        }
+        
         .load-icon {
             margin: 0 auto;
             width: 72px;
+            animation: spin 2s linear infinite;
         }
+
     }
 
     &-instruction {

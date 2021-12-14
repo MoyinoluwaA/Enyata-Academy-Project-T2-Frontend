@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-main-content">
-        <p v-if='loading' class="mt-5 text-center fw-bloder fs-3">Loading....</p>
+        <p v-if='loading' class="mt-5 pt-5 text-center fw-bloder fs-1">Loading....</p>
         <div v-else>
             <div>
                 <h2 class="dashboard-header-wrapper">Dashboard</h2>
