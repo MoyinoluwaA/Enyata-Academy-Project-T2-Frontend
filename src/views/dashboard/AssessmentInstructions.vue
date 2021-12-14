@@ -36,6 +36,8 @@
 <script>
 import Button from "@/components/Button.vue"
 import ApplicationService from '@/services/application'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
     name: 'AssessmentInstructions',
     components: {
@@ -45,30 +47,26 @@ export default {
         return {
             timeAllotted: '',
             noOfQuestions: '',
-            batchId: 1,
-            applicantId: ''
         }
     },
-
+    computed: {
+        ...mapGetters(['getBatchId', 'getApplicantId'])
+    },
+    methods: {
+        ...mapActions(['saveAssessment'])
+    },
     async mounted() {
         try {
-            const res = await ApplicationService.getApplicantStatus()
-            if (res.code === 200) {
-                this.applicantId = res.data.applicant.id
-
-                const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
-                if (response.code === 200)  {
-                    this.timeAllotted = response.data.time_allotted
-                    this.noOfQuestions = response.data.assessment_test.length
-                }
+            const response = await ApplicationService.getAssessmentQuestions(this.getBatchId, this.getApplicantId)
+            if (response.code === 200)  {
+                this.timeAllotted = response.data.time_allotted
+                this.noOfQuestions = response.data.assessment_test.length
+                this.saveAssessment(response.data)
             }
         } catch (error) {
-             if (error.response.data.status === 401) {
-                this.$dtoast.pop({
-                    preset: "error",
-                    heading: "Unauthenticated user",
-                    content: "Kindly go back to sign in",
-                })
+            if (error.response.data.status === 401) {
+                this.handleLogOut()
+                this.$router.push({ name: 'SignIn' })
             }    
         }      
     }

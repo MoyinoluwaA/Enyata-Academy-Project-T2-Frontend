@@ -2,8 +2,8 @@
     <div class="dashboard-main-content">
         <div>
             <h2 class="dashboard-header-wrapper">Dashboard</h2>
-            <p class="fst-italic fs-6" v-if="status === 'approved'">Your Application is approved, kindly watch the space to know your assessment date</p>
-            <p class="fst-italic fs-6" v-else-if="status === 'pending'">Your Application is currently being review, you wil be notified if successful</p>
+            <p class="fst-italic fs-6" v-if="status === 'approved'">Your Application has been approved, kindly watch the space to know your assessment date</p>
+            <p class="fst-italic fs-6" v-else-if="status === 'pending'">Your Application is currently being reviewed, you wil be notified if successful</p>
             <p class="fst-italic fs-6" v-else>Sorry, you didn't meet the requirement for this current application, kindly wait till next batch</p>
         </div>
 
@@ -39,44 +39,45 @@
             <div class="col-lg-6 col-12">
                 <div class="update-wrapper me-auto">
                     <p class="p-4 fw-bold">Updates</p>
-                    <div class="text-center">
-                        <p class="dashboard-instructions">{{ instructions }} and stop complaining</p>
-                        <img class="update-lines p-4 img-fluid" src="../../assets/icons/update-line.svg" alt="line" />
+                    <div>
+                        <p class="dashboard-instructions">{{ instructions }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-12">
-                    <div class="update-wrapper mt-4 mt-lg-0 ms-auto">
-                        <p class="p-4 fw-bold">Take Assessment</p>
-                        <div class="assessment-cta">    
-                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-if="status === 'approved'">We have 
-                                <span v-if="daysToAssessment >= 1">
-                                    {{ daysToAssessment }} days
-                                </span> 
-                                <span v-else>
-                                    {{ hoursToAssessment }} hours
+                <div class="update-wrapper mt-4 mt-lg-0 ms-auto">
+                    <p class="p-4 fw-bold">Take Assessment</p>
+                    <div class="assessment-cta">    
+                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-if="status === 'approved'">
+                            <span v-if="daysToAssessment >= 1">
+                                We have 
+                                <span>
+                                    {{ daysToAssessment }} {{ daysToAssessment > 1 ? 'days' : 'day' }}
                                 </span> 
                                 left until the next assessment.<br/>Watch this space
-                            </p>
+                            </span>
+                            <span v-else>You can now take your assessment test</span>
+                        </p>
 
-                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else-if="status === 'pending'">We have 
-                                <span>
-                                    {{ daysToAssessment }} 
-                                </span> 
-                                days left until the next assessment.<br/>Watch this space
-                            </p>
+                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else-if="status === 'pending'">We have 
+                            <span>
+                                {{ daysToAssessment }} 
+                            </span> 
+                            days left until the next assessment.<br/>Watch this space
+                        </p>
 
-                            <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else>
-                                Your application was declined.
-                            </p>
-                            <router-link v-if="status === 'approved'" :to="{ name: 'TakeAssessment'}">
-                                <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
-                            </router-link>
-                            <router-link v-else :to="{ name: 'Dashboard'}">
-                                <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
-                            </router-link>
-                        </div>
+                        <p class="fs-6 fw-normal text-center mt-auto mb-auto" v-else>
+                            Your application was declined.
+                        </p>
+
+                        <router-link v-if="status === 'approved' && daysToAssessment < 1" :to="{ name: 'TakeAssessment'}">
+                            <Button btnText='Take Assessment' btnStyle='btn--purple mt-4' />
+                        </router-link>
+                        <span v-else>
+                            <Button btnText='Take Assessment' btnStyle='btn--gray mt-4' />
+                        </span>
                     </div>
+                </div>
             </div>
         </div>
 
@@ -87,6 +88,7 @@
 import Button from "../../components/Button.vue"
 import ApplicationService from '@/services/application'
 import { DateTime } from 'luxon'
+import { mapActions } from 'vuex'
 
 export default {
     name: 'DashboardHome',
@@ -101,9 +103,11 @@ export default {
             daysFromApplication: '',
             hoursFromApplication: '',
             instructions: '',
-            daysToAssessment: '',
-            hoursToAssessment: ''
+            daysToAssessment: ''
         }
+    },
+    methods: {
+        ...mapActions(['saveApplicantStatus'])
     },
     async mounted() {
         try {
@@ -122,11 +126,6 @@ export default {
                     const hoursFromApplication = Math.abs(daysFromApplicationObject.diffNow(['hours']).toObject().hours)
                     this.hoursFromApplication = Math.floor(hoursFromApplication)
                 }
-
-                if (daysToAssessment < 1) {
-                    const hourstoAssessment = Math.abs(daysToAssessmentObject.diffNow(['hours']).toObject().hours)
-                    this.hourstoAssessment = Math.floor(hourstoAssessment)
-                }
                 
                 this.applicationDate = applicationDate
                 this.daysFromApplication = Math.floor(daysFromApplication)
@@ -134,6 +133,8 @@ export default {
                 this.instructions = res.data.academy.academy_instruction
                 this.assessmentStartDate = res.data.academy.assessment_start_date
                 this.status = res.data.applicant.status
+
+                this.saveApplicantStatus({ daysToAssessment: this.daysToAssessment, applicantStatus: this.status })
             }
         } catch (error) {
             if (error.response.data.status === 401) {

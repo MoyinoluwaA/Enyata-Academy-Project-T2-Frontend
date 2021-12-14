@@ -65,7 +65,7 @@ export default {
 					description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation amet."
 				},
 			],
-			application: false,
+			application: true,
 			loggedIn: false
 		}
 	},
@@ -73,12 +73,12 @@ export default {
 		try {
 			const res = await ApplicationService.getApplicationStatus()
 			if (res.status === 200) {
+				this.application = true
 				if (this.getToken) {
 					this.loggedIn = true
 				} else {
 					this.loggedIn = false
 				}
-				this.application = true
 			}
 		} catch (error) {
 			this.application = false

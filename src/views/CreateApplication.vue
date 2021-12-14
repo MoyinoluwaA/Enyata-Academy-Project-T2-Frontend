@@ -137,10 +137,11 @@
 
 <script>
 import formInput from "@/components/InputApplication.vue"
-import Button from '../components/Button.vue'
+import Button from '@/components/Button.vue'
 import UploadService from '@/services/upload'
 import ApplicationService from '@/services/application'
 import { lettersRegex, emailRegex, } from '@/helpers/variables'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'CreateApplication',
@@ -170,8 +171,7 @@ export default {
             },
             isError: {},
             lettersRegex,
-            emailRegex,
-            batchId: 1
+            emailRegex
         }
     },
     methods: {
@@ -210,7 +210,7 @@ export default {
             try {
                 // eslint-disable-next-line no-unused-vars
                 const { first_name, email, last_name, ...applicantData} = this.user
-                const res = await ApplicationService.createApplication(applicantData, this.batchId)
+                const res = await ApplicationService.createApplication(applicantData, this.getBatchId)
                 if (res.code === 200) {
                     this.$router.push({ name: 'Dashboard' })
                     this.clearField()
@@ -263,15 +263,16 @@ export default {
             }
         } catch (error) {
             if (error.response.status === 400) {
-                    this.$dtoast.pop({
-                        preset: "error",
-                        heading: "Unable to fetch data",
-                        message: 'Unauthenticated user'
-                    })
-                }
+                this.$dtoast.pop({
+                    preset: "error",
+                    heading: "Unable to fetch data",
+                    message: 'Unauthenticated user'
+                })
+            }
         }
     },
     computed: {
+        ...mapGetters(['getBatchId']),
          isDisabled() {
             return (
                 (!(this.user.first_name && this.user.last_name && this.user.email && 

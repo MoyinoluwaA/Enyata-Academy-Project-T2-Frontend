@@ -12,6 +12,12 @@
         &-white {
             @extend .btn-register;
             @include button($white-color, $purple-color);
+            @include media-breakpoint-down(md) {
+                width: 240px;
+            }
+            @media screen and (max-width: 320px) {
+                width: 100%;
+            }
         }
         &-purple {
             @extend .btn-register;

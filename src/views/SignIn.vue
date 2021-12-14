@@ -93,6 +93,7 @@ export default {
 
                         this.$router.push({ name: 'Dashboard' })
                     } else {
+                        this.saveApplicantDetails({ batch_id: status.data.batchId })
                         this.$router.push({ name: 'CreateApplication' })
                     }
                 }

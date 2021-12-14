@@ -73,20 +73,22 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getBatchId', 'getApplicantId'])
+        ...mapGetters(['getBatchId', 'getApplicantId', 'getAssessment'])
     },
     methods: {
-        ...mapActions(['saveApplicantDetails']),
+        ...mapActions(['saveApplicantDetails', 'handleLogOut', 'saveSubmittedTime']),
         startTimer(duration) {
             let timer = duration
-            setInterval(() => {
+            const time = setInterval(() => {
                 this.mins = parseInt(timer / 60, 10);
                 this.secs = parseInt(timer % 60, 10);
 
                 this.mins = this.mins < 10 ? "0" + this.mins : this.mins;
                 this.secs = this.secs < 10 ? "0" + this.secs : this.secs;
-
+                
                 if (--timer < 0) {
+                    clearInterval(time)
+                    this.submitAssessment()
                     timer = duration;
                 }
             }, 1000);
@@ -104,7 +106,7 @@ export default {
                 this.nextDisabled = true
 
                 const answerSelected = Object.keys(this.selectedAnswers)
-                if (answerSelected.length === this.assessments.length-1)
+                if (answerSelected.length === this.assessments.length - 1)
                 this.finishDisabled = false
             }
         },
@@ -127,10 +129,11 @@ export default {
         },
         async submitAssessment() {
             try {
-                const res = await ApplicationService.submitAssessment(this.batchId, this.applicantId, 
+                const res = await ApplicationService.submitAssessment(this.getBatchId, this.getApplicantId, 
                     { assessment_answers: {...this.selectedAnswers} }
                 )
                 if (res.code === 200) {
+                    this.saveSubmittedTime({mins: this.mins, secs: this.secs})
                     this.$router.push({ name: 'AssessmentCompleted' })
                 }
             } catch (error) {
@@ -142,29 +145,11 @@ export default {
             }
         }
     },
-    async mounted() {
-        try {
-            const res = await ApplicationService.getApplicantStatus()
-            if (res.code === 200) {
-                this.applicantId = res.data.applicant.id
-                this.batchId = res.data.applicant.batch_id
-
-                const response = await ApplicationService.getAssessmentQuestions(this.batchId, this.applicantId)
-                if (response.code === 200) {
-                    this.assessments = response.data.assessment_test
-                    this.currentQuestion = this.assessments[0]
-                    this.time = response.data.time_allotted
-                } 
-            }
-        } catch (error) {
-             if (error.response.data.status === 401) {
-                this.$dtoast.pop({
-                    preset: "error",
-                    heading: "Unauthenticated user",
-                    content: "Kindly go back to sign in",
-                })
-            }    
-        }
+    mounted() {
+        const assessment = this.getAssessment
+        this.assessments = assessment.assessment_test
+        this.currentQuestion = this.assessments[0]
+        this.time = assessment.time_allotted
         
         this.startTimer(this.time * 60)
     },
